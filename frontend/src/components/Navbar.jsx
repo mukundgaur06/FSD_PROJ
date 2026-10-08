@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 import {
   Home,
   Compass,
@@ -12,6 +13,8 @@ import {
   LogOut,
   LogIn,
   Sparkles,
+  Sun,
+  Moon,
 } from 'lucide-react';
 
 const Navbar = ({
@@ -22,6 +25,7 @@ const Navbar = ({
   onOpenLogs,
 }) => {
   const { user, isAuthenticated, isAdmin, isStudent, logout } = useAuth();
+  const { theme, toggleTheme, isDark } = useTheme();
 
   return (
     <header className="navbar">
@@ -34,8 +38,8 @@ const Navbar = ({
             <span className="brand-title">HackElite AI</span>
             <span className="brand-badge">24CIE554</span>
           </div>
-          <div style={{ fontSize: '0.65rem', color: '#94a3b8', letterSpacing: '0.2px' }}>
-            Opportunity Discovery & Analytics
+          <div className="nav-subtitle">
+            Opportunity Discovery &amp; Analytics
           </div>
         </div>
       </div>
@@ -95,6 +99,25 @@ const Navbar = ({
       </nav>
 
       <div className="nav-actions">
+        {/* 🌙☀️ Theme Toggle Button */}
+        <button
+          className="theme-toggle-btn"
+          onClick={toggleTheme}
+          title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          aria-label="Toggle theme"
+        >
+          <span className="theme-toggle-track">
+            <span className={`theme-toggle-thumb ${isDark ? 'dark' : 'light'}`} />
+          </span>
+          <span className="theme-toggle-icon">
+            {isDark ? (
+              <Moon size={14} className="theme-icon moon" />
+            ) : (
+              <Sun size={14} className="theme-icon sun" />
+            )}
+          </span>
+        </button>
+
         {/* Viva Audit Log Inspector Button */}
         <button
           className="btn btn-secondary btn-sm"

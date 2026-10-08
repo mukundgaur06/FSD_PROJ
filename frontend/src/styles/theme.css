@@ -1,0 +1,396 @@
+/* ==========================================================================
+   THEME TOGGLE BUTTON — Animated Sun/Moon pill in Navbar (Course: 24CIE554)
+   ========================================================================== */
+
+.nav-subtitle {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.2px;
+}
+
+/* ── Toggle pill container ── */
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--toggle-bg);
+  border: 1px solid var(--toggle-border);
+  border-radius: var(--radius-full);
+  padding: 5px 10px 5px 6px;
+  cursor: pointer;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+/* ── Track (the pill background) ── */
+.theme-toggle-track {
+  width: 32px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  background: rgba(99, 102, 241, 0.25);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme="light"] .theme-toggle-track {
+  background: rgba(251, 191, 36, 0.2);
+  border-color: rgba(251, 191, 36, 0.4);
+}
+
+/* ── Sliding thumb ── */
+.theme-toggle-thumb {
+  position: absolute;
+  top: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-toggle-thumb.dark {
+  transform: translateX(2px);
+  background: #818cf8;
+  box-shadow: 0 0 6px rgba(99, 102, 241, 0.7);
+}
+
+.theme-toggle-thumb.light {
+  transform: translateX(14px);
+  background: #f59e0b;
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.7);
+}
+
+/* ── Icon (Moon / Sun) ── */
+.theme-toggle-icon {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+}
+
+.theme-icon.moon { color: #818cf8; }
+.theme-icon.sun  { color: #f59e0b; transform: rotate(15deg); }
+
+/* ==========================================================================
+   LIGHT MODE — Component overrides driven by [data-theme="light"] on <html>
+   ========================================================================== */
+
+/* Brand */
+[data-theme="light"] .brand-title {
+  background: linear-gradient(to right, #0f172a, #334155);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .brand-badge {
+  background: rgba(99, 102, 241, 0.1);
+  color: #4f46e5;
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+/* Cards */
+[data-theme="light"] .opportunity-card,
+[data-theme="light"] .application-card,
+[data-theme="light"] .team-card,
+[data-theme="light"] .stat-card,
+[data-theme="light"] .chart-card {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+[data-theme="light"] .opportunity-card:hover,
+[data-theme="light"] .team-card:hover {
+  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.15), 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .card-title,
+[data-theme="light"] .stat-val,
+[data-theme="light"] .chart-title,
+[data-theme="light"] .modal-title { color: var(--text-main); }
+
+/* Modals */
+[data-theme="light"] .modal-content {
+  background: rgba(255, 255, 255, 0.97);
+  border-color: var(--border-color);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .modal-close-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--text-main);
+}
+
+/* AI Drawer */
+[data-theme="light"] .ai-drawer {
+  background: rgba(255, 255, 255, 0.97);
+  border-left-color: var(--border-color);
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .ai-message-bot {
+  background: rgba(241, 245, 249, 0.95);
+  border-color: var(--border-color);
+  color: var(--text-main);
+}
+
+[data-theme="light"] .ai-input-bar {
+  background: rgba(248, 250, 252, 0.95);
+  border-top-color: var(--border-color);
+}
+
+[data-theme="light"] .ai-recommendation-mini-card {
+  background: rgba(241, 245, 249, 0.95);
+  border-color: var(--border-color);
+}
+
+/* Toast */
+[data-theme="light"] .toast-item {
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .toast-message { color: #1e293b; }
+
+/* Skill pills */
+[data-theme="light"] .skill-pill {
+  background: rgba(99, 102, 241, 0.07);
+  color: #4338ca;
+}
+
+/* Filter bar */
+[data-theme="light"] .filter-bar {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: var(--border-color);
+  backdrop-filter: blur(10px);
+}
+
+/* Domain chips */
+[data-theme="light"] .domain-chip {
+  background: rgba(99, 102, 241, 0.05);
+  border-color: rgba(99, 102, 241, 0.2);
+  color: var(--text-muted);
+}
+[data-theme="light"] .domain-chip:hover {
+  background: rgba(99, 102, 241, 0.12);
+  color: var(--text-main);
+}
+
+/* User pill */
+[data-theme="light"] .user-pill {
+  background: rgba(248, 250, 252, 0.97);
+  border-color: var(--border-color);
+}
+
+/* Timeline step */
+[data-theme="light"] .step-indicator {
+  background: #e2e8f0;
+  border-color: #94a3b8;
+}
+
+/* Member avatar */
+[data-theme="light"] .member-avatar-chip {
+  background: #e2e8f0;
+  border-color: #fff;
+  color: #475569;
+}
+
+/* Page header titles */
+[data-theme="light"] .page-title-group h1 { color: #0f172a; }
+
+/* ==========================================================================
+   LIGHT MODE — Landing Page Glass Panels
+   ========================================================================== */
+
+[data-theme="light"] .hero-glass-card {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(148, 163, 184, 0.2);
+}
+
+[data-theme="light"] .floating-pill-left {
+  background: rgba(255, 255, 255, 0.92);
+  color: #059669;
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+[data-theme="light"] .floating-pill-right {
+  background: rgba(255, 255, 255, 0.92);
+  color: #0284c7;
+  border-color: rgba(6, 182, 212, 0.4);
+}
+
+[data-theme="light"] .stats-banner {
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(148, 163, 184, 0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+}
+
+[data-theme="light"] .stat-number { color: #0f172a; }
+[data-theme="light"] .hero-heading { color: #0f172a; }
+[data-theme="light"] .hero-subheading { color: var(--text-muted); }
+[data-theme="light"] .section-title { color: #0f172a; }
+
+[data-theme="light"] .hero-pill-badge {
+  background: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.3);
+  color: #4f46e5;
+}
+
+[data-theme="light"] .feature-card {
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(148, 163, 184, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .feature-card:hover {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 15px 40px rgba(99, 102, 241, 0.12);
+}
+[data-theme="light"] .feature-card-title { color: #0f172a; }
+[data-theme="light"] .feature-card-desc  { color: var(--text-muted); }
+
+[data-theme="light"] .step-card {
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(148, 163, 184, 0.25);
+}
+[data-theme="light"] .step-num-badge { color: rgba(15, 23, 42, 0.12); }
+
+[data-theme="light"] .comparison-card.problem {
+  background: rgba(254, 242, 242, 0.85);
+  border-color: rgba(244, 63, 94, 0.25);
+}
+[data-theme="light"] .comparison-card.solution {
+  background: rgba(240, 253, 244, 0.85);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+[data-theme="light"] .landing-cta-banner {
+  background: linear-gradient(135deg, rgba(238, 242, 255, 0.96) 0%, rgba(250, 252, 255, 0.99) 100%);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 15px 40px rgba(99, 102, 241, 0.1);
+}
+
+[data-theme="light"] .landing-footer { border-top-color: rgba(148, 163, 184, 0.3); }
+
+[data-theme="light"] .footer-bottom {
+  border-top-color: rgba(148, 163, 184, 0.2);
+  color: var(--text-dim);
+}
+
+/* ── Terminal always stays dark (it IS a terminal) ── */
+.terminal-window {
+  background: #050811 !important;
+  color: #a7f3d0 !important;
+}
+
+/* ==========================================================================
+   LIGHT MODE — Deep Contrast & Legibility Enhancements
+   ========================================================================== */
+
+/* Hero Frosted Card typography */
+[data-theme="light"] .hero-glass-card h3 { color: #0f172a !important; }
+[data-theme="light"] .hero-glass-card p { color: #475569 !important; }
+[data-theme="light"] .hero-glass-card .meta-item strong { color: #0f172a !important; }
+[data-theme="light"] .hero-glass-card .meta-item span { color: #475569 !important; }
+
+/* Comparison Problem / Solution Cards */
+[data-theme="light"] .comparison-card.problem h3 { color: #991b1b !important; }
+[data-theme="light"] .comparison-card.problem .comparison-item span { color: #334155 !important; }
+[data-theme="light"] .comparison-card.problem .comparison-item span strong { color: #0f172a !important; }
+[data-theme="light"] .comparison-card.solution h3 { color: #065f46 !important; }
+[data-theme="light"] .comparison-card.solution .comparison-item span { color: #334155 !important; }
+[data-theme="light"] .comparison-card.solution .comparison-item span strong { color: #0f172a !important; }
+
+/* Analytics Charts & KPI Grid */
+[data-theme="light"] .bar-label-group span { color: var(--text-main) !important; }
+[data-theme="light"] .bar-label-group span strong { color: #0f172a !important; }
+[data-theme="light"] .bar-track { background: #e2e8f0 !important; }
+[data-theme="light"] .chart-card div[style*="rgba(0,0,0"] {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+[data-theme="light"] .chart-card div[style*="rgba(0,0,0"] strong { color: #0f172a !important; }
+[data-theme="light"] .chart-card div[style*="rgba(0,0,0"] div { color: var(--text-main) !important; }
+
+/* Application Tracker */
+[data-theme="light"] .application-card h3 { color: var(--text-main) !important; }
+[data-theme="light"] .app-card-header strong { color: var(--text-main) !important; }
+
+/* Team Formation */
+[data-theme="light"] .team-card h3 { color: var(--text-main) !important; }
+[data-theme="light"] .team-card strong { color: var(--text-main) !important; }
+[data-theme="light"] .team-card p { color: var(--text-muted) !important; }
+
+/* Admin Dashboard Tables */
+[data-theme="light"] table { color: var(--text-main); }
+[data-theme="light"] table thead tr {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  border-bottom-color: #cbd5e1 !important;
+}
+[data-theme="light"] table tbody tr {
+  border-bottom-color: #e2e8f0 !important;
+  color: #334155 !important;
+}
+[data-theme="light"] table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.04) !important;
+}
+[data-theme="light"] table tbody tr td strong { color: #0f172a !important; }
+
+/* Empty State Containers */
+[data-theme="light"] div[style*="textAlign: 'center'"] h3,
+[data-theme="light"] div[style*="text-align: center"] h3 {
+  color: var(--text-main) !important;
+}
+[data-theme="light"] div[style*="var(--bg-secondary)"] {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Modals & AI Drawer Headers */
+[data-theme="light"] .modal-header {
+  background: #f8fafc !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+[data-theme="light"] .modal-header h3 {
+  color: #0f172a !important;
+}
+[data-theme="light"] .ai-drawer .modal-header {
+  background: #f8fafc !important;
+}
+[data-theme="light"] .ai-drawer .modal-header h3 {
+  color: #0f172a !important;
+}
+[data-theme="light"] .ai-recommendation-mini-card strong {
+  color: #0f172a !important;
+}
+
+/* Form Controls in Light Mode */
+[data-theme="light"] .form-input,
+[data-theme="light"] .form-textarea,
+[data-theme="light"] .custom-select {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+[data-theme="light"] .form-input:focus,
+[data-theme="light"] .form-textarea:focus,
+[data-theme="light"] .custom-select:focus {
+  background: #ffffff !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
+}
+
+/* ── Prevent flicker on non-transitioning elements ── */
+img, svg, canvas, video {
+  transition: none !important;
+}
+
