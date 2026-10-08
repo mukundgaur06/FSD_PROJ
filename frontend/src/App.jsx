@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
+import Background3D from './components/Background3D';
 import LandingPage from './views/LandingPage';
 import DiscoveryView from './views/DiscoveryView';
 import ApplicationTrackerView from './views/ApplicationTrackerView';
@@ -43,6 +44,9 @@ function App() {
 
   return (
     <div className="app-container">
+      {/* 3D Interactive Particle Background — fixed behind all UI */}
+      <Background3D />
+
       {/* Top Navigation */}
       <Navbar
         activeTab={activeTab}

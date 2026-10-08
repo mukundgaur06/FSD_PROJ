@@ -154,6 +154,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  position: relative;
+  z-index: 1;          /* Establishes stacking context above the canvas (z-index: 0) */
 }
 
 .main-content {
@@ -162,6 +164,7 @@ body {
   width: 100%;
   margin: 0 auto;
   padding: 24px 20px 60px;
+  position: relative;  /* ensures content participates in the app z-stack */
 }
 
 /* Navbar */

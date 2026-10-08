@@ -1,396 +1,718 @@
-# HackElite AI: An Intelligent Technical Opportunity Discovery, Recommendation & Analytics Platform
+# HackElite AI — Intelligent Technical Opportunity Discovery, Recommendation & Analytics Platform
 
-[![Course](https://img.shields.io/badge/Course-24CIE554%20--%20Full%20Stack%20Development-blue.svg)](https://github.com)
-[![Architecture](https://img.shields.io/badge/Architecture-MERN%20Stack%20(React%20%2B%20Node%20%2B%20Express%20%2B%20MongoDB)-61DAFB.svg)](https://reactjs.org)
-[![Security](https://img.shields.io/badge/Auth-JWT%20%2B%20RBAC%20(Student%20%26%20Admin)-green.svg)](https://jwt.io)
-[![Design](https://img.shields.io/badge/UI%2FUX-SaaS%20Glassmorphism%20%2B%20Dual%20Theme-purple.svg)](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter)
-[![Code Quality](https://img.shields.io/badge/Code%20Quality-SonarLint%20%2F%20SonarQube%20Ready-brightgreen.svg)](https://www.sonarqube.org/)
+[![Course](https://img.shields.io/badge/Course-24CIE554%20Full%20Stack%20Development-4f46e5?style=for-the-badge)](.)
+[![Stack](https://img.shields.io/badge/Stack-MERN%20%2B%20Three.js%20WebGL-06b6d4?style=for-the-badge)](.)
+[![Auth](https://img.shields.io/badge/Auth-JWT%20%2B%20RBAC-10b981?style=for-the-badge)](.)
+[![UI](https://img.shields.io/badge/UI-Glassmorphism%20%2B%20Dark%2FLight%20Mode-a855f7?style=for-the-badge)](.)
+[![3D](https://img.shields.io/badge/3D%20Engine-Three.js%20r0.186%20WebGL2-f59e0b?style=for-the-badge)](.)
 
 ---
 
 ## 1. Project Overview & Abstract
 
 ### 1.1 Abstract
-University students face severe friction when seeking career-defining technical opportunities—such as global hackathons, high-stipend corporate internships, algorithmic coding competitions, and academic research grants. These opportunities are currently fragmented across disparate Discord servers, transient WhatsApp groups, closed Telegram channels, and unstructured job boards. This fragmentation leads to missed application deadlines, the "resume black hole" (where applicants receive zero status visibility), and disorganized team formation for hackathons.
 
-**HackElite AI** is an intelligent, full-stack web application engineered on the **MERN stack** (MongoDB, Express.js, React, Node.js) specifically for course **24CIE554 - Full Stack Development**. The platform centralizes, curates, and monitors technical opportunities with:
-1. **Intelligent Opportunity Discovery & Multi-Attribute Filtering** (by domain, location modality, sponsoring organization, and deadline).
-2. **Contextual AI Assistant & Recommendation Engine** grounded in live MongoDB data collections to match student skills with optimal listings.
-3. **Collaborative Team Formation Module** with project deck uploads and teammate recruitment.
-4. **End-to-End Application Tracking Pipeline** featuring visual 4-stage Kanban progression and transparent evaluation feedback.
-5. **Real-Time Ecosystem Analytics & Aggregation Dashboards** computing key performance indicators (KPIs) and domain distribution metrics.
-6. **Administrator Management Console** with complete CRUD authority, applicant dossier review, and status lifecycle control.
-7. **Academic Audit Telemetry & Logging Middleware** for runtime request-response inspection during laboratory and viva evaluations.
+University students face severe friction when seeking career-defining technical opportunities — such as global hackathons, high-stipend corporate internships, algorithmic coding competitions, and academic research grants. These opportunities are currently scattered across disparate Discord servers, transient WhatsApp groups, closed Telegram channels, and unstructured job boards. This fragmentation leads to missed application deadlines, zero status visibility, and disorganized team formation.
 
----
+**HackElite AI** is an intelligent, full-stack web application engineered on the **MERN stack** (MongoDB · Express.js · React 19 · Node.js) for course **24CIE554 — Full Stack Development**. The platform centralises, curates, and monitors technical opportunities through seven tightly integrated modules:
 
-### 1.2 Academic Course & Team Information
-* **Course Code**: `24CIE554`
-* **Course Title**: Full Stack Development
-* **Degree / Semester**: B.Tech. Computer Science & Engineering
-* **Project Title**: *HackElite AI: An Intelligent Technical Opportunity Discovery, Recommendation and Analytics Platform*
-* **Project Team**:
-  * **Lead Full Stack Engineer & Systems Architect**: Student Developer (Roll / ID: 24CIE554-FSD-01)
-  * **Team Collaborator & UI/UX Specialist**: Student Developer (Roll / ID: 24CIE554-FSD-02)
-  * **Evaluation Faculty / Course Instructor**: Department of Computer Science & Engineering
+| # | Module | Key Capability |
+|---|--------|----------------|
+| 1 | **Opportunity Discovery & Filter** | Multi-attribute search by domain, location, company, deadline |
+| 2 | **AI Assistant & Recommender** | Contextual Gemini-powered chat grounded in live MongoDB data |
+| 3 | **Team Formation** | Recruiter board with project deck file upload |
+| 4 | **Application Tracker** | 4-stage Kanban pipeline with feedback visibility |
+| 5 | **Analytics Dashboard** | Real-time KPIs, domain distribution, deadline heatmaps |
+| 6 | **Admin Console** | Full CRUD authority, applicant dossier review, status control |
+| 7 | **Audit Telemetry** | Request/response logging middleware exposed via REST endpoint |
+
+A dedicated **Three.js WebGL 2.0 Neural Constellation Engine** renders a hyper-interactive 3D particle network as the application backdrop — demonstrating advanced browser-side graphics programming integrated cleanly into the MERN architecture.
 
 ---
 
-## 2. System Architecture & Work of Flow
+### 1.2 Academic & Team Details
 
-The platform implements a multi-tier, decoupled architecture adhering to RESTful service-oriented design patterns. The diagram below illustrates the end-to-end data lifecycle from user interactions in the browser through validation, role-based protection, business logic, persistence, and AI inference.
+| Field | Value |
+|-------|-------|
+| **Course Code** | `24CIE554` |
+| **Course Title** | Full Stack Development |
+| **Degree / Semester** | B.Tech. Computer Science & Engineering |
+| **Project Title** | *HackElite AI: An Intelligent Technical Opportunity Discovery, Recommendation and Analytics Platform* |
+| **Lead Engineer** | Student Developer — Roll No. 24CIE554-FSD-01 |
+| **UI/UX Collaborator** | Student Developer — Roll No. 24CIE554-FSD-02 |
+| **Faculty Evaluator** | Department of Computer Science & Engineering |
+
+---
+
+## 2. System Architecture & Data Flow
+
+### 2.1 High-Level Architecture Diagram
 
 ```
-┌────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                   CLIENT LAYER (Browser)                                       │
-│                                                                                                │
-│   ┌────────────────────────────┐               ┌───────────────────────────────────────────┐   │
-│   │   Student Engineer         │               │   Administrator / Faculty                 │   │
-│   │   (Discovery, Teams, Apps) │               │   (Opportunity CRUD, Candidate Dossiers)  │   │
-│   └─────────────┬──────────────┘               └─────────────────────┬─────────────────────┘   │
-└─────────────────┼────────────────────────────────────────────────────┼─────────────────────────┘
-                  │                                                    │
-                  ▼                                                    ▼
-┌────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                FRONTEND APPLICATION (React + Vite)                             │
-│                                                                                                │
-│  • Single Page Application (SPA) with React 18 / 19 + Vite                                     │
-│  • High-End SaaS Glassmorphism (Backdrop Blur, Razor Micro-Borders, Ambient Drop Shadows)      │
-│  • Instant Light/Dark Mode Switching via Root Custom Properties (`[data-theme]`)               │
-│  • Context API State Management:                                                               │
-│    ├── AuthContext.jsx       ── Session persistence & JWT extraction                           │
-│    ├── ThemeContext.jsx      ── Dark / Light mode switching & OS preference sync               │
-│    └── ToastContext.jsx      ── Non-blocking feedback notifications                            │
-│  • Centralized Axios API Service Layer with Request & Response Interceptors                    │
-└───────────────────────────────────────────────┬────────────────────────────────────────────────┘
-                                                │  JSON Payloads via HTTP / HTTPS
-                                                │  `Authorization: Bearer <JWT_TOKEN>`
-                                                ▼
-┌────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                              BACKEND API GATEWAY (Node.js + Express)                           │
-│                                                                                                │
-│  1. CORS & Body Parsers (`express.json()`, `express.urlencoded()`)                             │
-│  2. Static Asset Hosting (`/uploads` for resumes and team project decks)                       │
-│  3. Academic Audit Logging Middleware (`loggerMiddleware.js`):                                 │
-│     ├── Console ANSI formatted output with execution latency (ms)                              │
-│     └── Persistent JSON Lines append file (`logs/server_audit.log`)                            │
-│  4. Route Dispatchers:                                                                         │
-│     ├── /api/auth             ── Registration, Login, Profile State                            │
-│     ├── /api/opportunities    ── Discovery, Search, CRUD, Bookmarks                            │
-│     ├── /api/applications     ── Submission, Stepper Stages, Reviews                           │
-│     ├── /api/teams            ── Creation, Join Requests, Approvals                            │
-│     ├── /api/analytics        ── Aggregation Pipelines, Domain Breakdown                       │
-│     ├── /api/ai               ── Contextual Gemini AI Grounding Engine                         │
-│     └── /api/logs/view        ── Telemetry inspector endpoint for viva demos                   │
-└───────────────────────────────────────────────┬────────────────────────────────────────────────┘
-                                                │
-                 ┌──────────────────────────────┴──────────────────────────────┐
-                 ▼                                                             ▼
-┌────────────────────────────────────────────────┐   ┌─────────────────────────────────────────┐
-│     SECURITY & CONTROLLER LAYER                │   │        INTELLIGENT AI ENGINE            │
-│                                                │   │                                         │
-│ • JWT Verification (`authMiddleware.js`)       │   │ • Vector & Skill Intersection Matching  │
-│ • Role-Based Access Control (RBAC):            │   │ • Database Grounding Query Synthesizer  │
-│   ├── `protect`: Validates signature & expiry  │   │ • Google Gemini Flash Model Integration │
-│   └── `adminOnly`: Restricts CRUD to Admins    │   │ • Autonomous Fallback Context System    │
-│ • Multer File Disk Storage for PDF Documents   │   │                                         │
-│ • Centralized Error Handler (HTTP 400/401/500) │   │                                         │
-└───────────────────────┬────────────────────────┘   └────────────────────┬────────────────────┘
-                        │                                                 │
-                        ▼                                                 ▼
-┌───────────────────────────────────────────────────────────────────────────────────────────────┐
-│                               DATABASE LAYER (MongoDB + Mongoose)                             │
-│                                                                                               │
-│  • Schema-Driven Document Store (`hackelite_db`):                                             │
-│    ├── `users`          ── Credentials (bcrypt), roles, colleges, skills arrays               │
-│    ├── `opportunities`  ── Domains, deadlines, rewards, status flags, compound text indexes   │
-│    ├── `applications`   ── Opportunity refs, candidate refs, stage audits, feedback notes     │
-│    ├── `saveditems`     ── Bookmark relationships with unique compound keys                   │
-│    └── `teams`          ── Leader refs, member rosters, max capacity, proposal links          │
-│  • MongoDB Aggregate Pipelines for Real-Time KPI Generation (`$group`, `$facet`, `$sort`)     │
-└───────────────────────────────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                          CLIENT TIER  (Browser)                              │
+│                                                                              │
+│  ┌────────────────────┐          ┌──────────────────────────────────────┐   │
+│  │  Student User      │          │  Administrator / Faculty              │   │
+│  │  Discovery · Teams │          │  CRUD · Dossier Review · Analytics   │   │
+│  │  Tracker · AI Chat │          │  Audit Logs · Status Control         │   │
+│  └────────┬───────────┘          └──────────────┬───────────────────────┘   │
+│           │                                     │                           │
+│  ┌────────▼─────────────────────────────────────▼───────────────────────┐   │
+│  │              React 19 + Vite SPA  (frontend/src/)                    │   │
+│  │                                                                       │   │
+│  │  ┌─────────────────────────────────────────────────────────────────┐ │   │
+│  │  │  Three.js WebGL 2.0 Neural Constellation Engine (fixed layer)   │ │   │
+│  │  │  • 4 200-node particle BufferGeometry  +  custom ShaderMaterial  │ │   │
+│  │  │  • Mouse-physics · Click shockwaves · Scroll parallax           │ │   │
+│  │  └─────────────────────────────────────────────────────────────────┘ │   │
+│  │                                                                       │   │
+│  │  ThemeContext (dark/light) · AuthContext (JWT) · ToastContext        │   │
+│  │  Navbar · LandingPage · DiscoveryView · AnalyticsView               │   │
+│  │  ApplicationTrackerView · TeamFormationView · AdminDashboardView     │   │
+│  └───────────────────────────────┬───────────────────────────────────────┘   │
+│                                  │  Axios HTTP · REST/JSON                   │
+└──────────────────────────────────┼──────────────────────────────────────────┘
+                                   │
+                    ┌──────────────▼──────────────┐
+                    │   API SERVER TIER (Node.js)  │
+                    │                              │
+                    │  Express.js v5 REST API      │
+                    │  PORT 5000                   │
+                    │                              │
+                    │  ┌──────────────────────┐   │
+                    │  │ Middleware Stack      │   │
+                    │  │  cors · helmet        │   │
+                    │  │  express-json         │   │
+                    │  │  loggerMiddleware ──► │───┼──► logs/server_audit.log
+                    │  └──────────┬───────────┘   │
+                    │             │                │
+                    │  ┌──────────▼───────────┐   │
+                    │  │  Route Handlers       │   │
+                    │  │  /api/auth            │   │
+                    │  │  /api/opportunities   │   │
+                    │  │  /api/applications    │   │
+                    │  │  /api/teams           │   │
+                    │  │  /api/analytics       │   │
+                    │  │  /api/ai              │   │
+                    │  │  /api/logs            │   │
+                    │  └──────────┬───────────┘   │
+                    │             │                │
+                    │  ┌──────────▼───────────┐   │
+                    │  │  JWT Auth Guard       │   │
+                    │  │  Role: student/admin  │   │
+                    │  └──────────┬───────────┘   │
+                    └─────────────┼───────────────┘
+                                  │  Mongoose ODM
+                    ┌─────────────▼───────────────┐
+                    │   DATA TIER  (MongoDB)        │
+                    │                              │
+                    │  Database: hackelite_db      │
+                    │                              │
+                    │  Collections                 │
+                    │  ├── users                   │
+                    │  ├── opportunities           │
+                    │  ├── applications            │
+                    │  └── teams                   │
+                    └─────────────┬───────────────┘
+                                  │  REST calls
+                    ┌─────────────▼───────────────┐
+                    │   AI INFERENCE LAYER          │
+                    │                              │
+                    │  Google Gemini 1.5 Flash API │
+                    │  System prompt grounded in   │
+                    │  live MongoDB opportunity    │
+                    │  and application data        │
+                    └──────────────────────────────┘
+```
+
+### 2.2 Request / Response Lifecycle
+
+```
+Browser           React SPA              Express API          MongoDB        Gemini
+  │                   │                      │                   │              │
+  │──click/event─────►│                      │                   │              │
+  │                   │──Axios POST/GET──────►│                   │              │
+  │                   │                      │──loggerMiddleware─►│ (write log)  │
+  │                   │                      │──verifyToken──────►│              │
+  │                   │                      │──Mongoose query───►│              │
+  │                   │                      │◄──document(s)──────│              │
+  │                   │                      │                   │              │
+  │                   │    (AI routes only)  │──fetch system────►│              │
+  │                   │                      │   prompt + data   │              │
+  │                   │                      │──────────────────────────────────►│
+  │                   │                      │◄──────────────── AI response ────│
+  │                   │◄──JSON response──────│                   │              │
+  │◄──UI state update─│                      │                   │              │
 ```
 
 ---
 
-## 3. Technology Stack Breakdown
+## 3. Technology Stack
 
-| Layer | Technology | Version | Purpose & Architectural Role |
-| :--- | :--- | :--- | :--- |
-| **Frontend Framework** | React.js | `^19.2.0` | Declarative component-based UI rendering, state management, and virtual DOM diffing. |
-| **Build Tool & Bundler** | Vite | `^8.3.0` | Ultra-fast Hot Module Replacement (HMR) and optimized Rollup production asset bundling. |
-| **Styling & Physics** | Vanilla CSS3 + Design Tokens | Custom | SaaS-grade glassmorphism with dynamic CSS custom properties, backdrop filters, and dual-mode theme support. |
-| **Iconography** | Lucide React | `^1.52.0` | Modern, lightweight, customizable SVG icon set for technical dashboards. |
-| **Client Routing** | React Router DOM | `^7.18.0` | Declarative client-side routing, navigation state, and single-page application workflow. |
-| **HTTP Client** | Axios | `^1.20.0` | Promise-based asynchronous HTTP client with custom request/response interceptors. |
-| **Backend Runtime** | Node.js | `v18+` / `v20+` | Non-blocking event-driven runtime handling concurrent API requests. |
-| **Web API Framework** | Express.js | `^5.2.0` | Routing engine, middleware pipeline, and RESTful micro-service endpoints. |
-| **Object Data Modeling** | Mongoose | `^9.3.0` | Strict schema definition, data validation, middleware hooks, and aggregation pipeline abstraction. |
-| **Database** | MongoDB | `v6.0+` / `v7.0+` | High-performance document-oriented NoSQL database with flexible JSON-like BSON storage. |
-| **Authentication & Tokens**| JSON Web Tokens (JWT) | `^9.0.0` | Stateless cryptographic bearer tokens for role-based session authorization. |
-| **Password Security** | bcryptjs | `^3.0.0` | Adaptive salted hashing algorithm preventing rainbow-table credential attacks. |
-| **File Handling** | Multer | `^2.0.0` | Multipart/form-data handler for resume uploads and project pitch attachments. |
-| **Artificial Intelligence**| Google Gemini API / Heuristic AI | `1.5/2.0 Flash` | Multimodal and contextual natural language inference grounded on live database opportunities. |
-| **Code Quality** | SonarLint & Oxlint | `^1.81.0` | Static code analysis, vulnerability scanning, code smells mitigation, and linting. |
-| **Version Control** | Git & GitHub | `Latest` | Distributed version control, branch management, pull requests, and commit tracking. |
+### 3.1 Frontend
 
----
+| Technology | Version | Role |
+|------------|---------|------|
+| **React** | 19.2 | Component-based SPA framework |
+| **Vite** | 8.3 | HMR build toolchain, ES-module bundler |
+| **Three.js** | 0.186 | WebGL 2.0 3D rendering engine |
+| **React Router DOM** | 7.18 | Client-side navigation |
+| **Lucide React** | 1.52 | Icon set |
+| **Axios** | 1.20 | HTTP client with interceptors |
+| **Vanilla CSS** | — | Custom glassmorphism design system |
 
-## 4. Comprehensive Feature Breakdown
+### 3.2 Backend
 
-### 4.1 Authentication & Role-Based Authorization (Module 1)
-* **Secure Registration & Login**: Validates email format, enforces password complexity, and hashes passwords via `bcryptjs` with salt rounds.
-* **Stateless JWT Tokens**: Issues signed JSON Web Tokens containing the user's `id` and `role`. Tokens expire after 7 days (`JWT_EXPIRES_IN=7d`).
-* **Strict Role Separation**:
-  * **Students**: Can explore opportunities, submit applications, upload resumes, save/bookmark items, create teams, and interact with the AI Advisor.
-  * **Administrators**: Possess exclusive rights to create, edit, and delete opportunities (`/api/opportunities`), and review/evaluate student candidate dossiers (`/api/applications/review/:id`).
-* **Session Interception**: Client automatically attaches the bearer token via Axios request interceptors and handles graceful recovery on token expiration (HTTP 401).
+| Technology | Version | Role |
+|------------|---------|------|
+| **Node.js** | ≥ 18 LTS | JavaScript runtime |
+| **Express.js** | 5.x | REST API framework |
+| **Mongoose** | 8.x | MongoDB ODM |
+| **JSON Web Token** | — | Stateless authentication |
+| **bcryptjs** | — | Password hashing |
+| **multer** | — | Multipart file upload |
+| **dotenv** | — | Environment variable management |
+| **cors / helmet** | — | Security middleware |
 
-### 4.2 High-Converting Landing Page & Refined Glassmorphism UI
-* **SaaS Glassmorphism Physics**:
-  * Heavy backdrop blur (`backdrop-filter: blur(24px)` to `blur(28px)`).
-  * Razor-thin micro-borders (`border: 1px solid rgba(255, 255, 255, 0.12)`).
-  * Layered inner 3D highlights (`inset 0 1px 0 0 ...`) creating beveled edges catching ambient light.
-  * Ambient elevation drop shadows (`box-shadow: 0 8px 32px 0 rgba(0,0,0,0.35)`).
-* **Dual Theme Engine (Dark & Light Mode)**:
-  * Default **Obsidian Dark Mode** with deep slate canvas, neon glowing indigo/emerald accents, and high-contrast typography.
-  * Clean **Pearl Light Mode** with crisp off-white canvas, translucent white-glass cards, and deep slate text.
-  * Instant toggling without page reload via root CSS variables and `.dark` / `.light` class synchronization with `localStorage` and system preference detection.
-* **Interactive Hero Components**:
-  * **AI Contextual Match Simulator**: Clickable skill tags dynamically animate candidate match scores with smooth counter effects.
-  * **Live Backend Telemetry Ticker**: Terminal window displaying mock and live API audit logs with pulsing status lights.
+### 3.3 Database & AI
 
-### 4.3 Opportunity CRUD & Admin Dashboard (Module 2)
-* **Full CRUD Lifecycle**: Administrators can post new hackathons, internships, coding contests, or grants, update existing parameters, or remove obsolete records.
-* **Comprehensive Metadata Attributes**: Title, company/sponsor, description, technical domain, location type (Remote, Hybrid, On-site), reward/stipend, application deadline, and required skill tags.
-* **Applicant Review Console**: Administrators evaluate applicant dossiers, examine submitted resumes, update application stages, and leave constructive feedback notes.
-
-### 4.4 Multi-Attribute Search, Filtering & Application Tracker (Module 3)
-* **Dynamic Search & Filtering**: Multi-condition querying on title, company, domain, opportunity type, and modality without page refresh.
-* **1-Click Application Workflow**: Modal-based application form supporting candidate pitch notes and PDF resume upload.
-* **Visual 4-Stage Application Stepper**: Real-time progress visualization across four explicit phases:
-  1. `Applied`
-  2. `Under Review`
-  3. `Shortlisted`
-  4. `Accepted / Rejected`
-* **Application Withdrawal**: Students can withdraw submitted applications at any time.
-
-### 4.5 Collaborative Team Formation & Document Attachments (Module 4)
-* **Hackathon Team Creation**: Students can initiate teams tied to specific hackathon opportunities, define required roles, and set member limits.
-* **Member Discovery & Join Requests**: Other students can browse active teams and submit membership requests with their skill summaries.
-* **Project Pitch Deck & Deck Uploads**: Teams can attach presentation decks or architecture diagrams using Multer disk storage.
-
-### 4.6 Analytics Dashboard & Aggregation Engine (Module 5)
-* **Real-Time KPIs**: Total opportunities, active listings, enrolled students, total applications, and overall acceptance percentage.
-* **MongoDB Aggregation Pipelines**:
-  * `$group` and `$facet` queries compute category distributions across technical domains (`AI/ML`, `Web Development`, `Cloud & DevOps`, `Cybersecurity`, etc.).
-  * Candidate funnel conversion rates across application lifecycle stages.
-  * Hiring company league table listing top recruiters and upcoming deadlines within 30 days.
-
-### 4.7 AI Assistant & Contextual Recommendation Engine (Module 6)
-* **Database Grounding**: Connects to the local database to find live opportunities matching user queries.
-* **Skill Vector Intersection**: Intersects user profile skills with opportunity requirements to score relevance.
-* **Interactive Drawer**: Slide-out assistant providing recommendation mini-cards, application pitch drafting tips, and deadline reminders.
+| Technology | Role |
+|------------|------|
+| **MongoDB** (local) | Primary document store — `hackelite_db` |
+| **Google Gemini 1.5 Flash** | AI assistant inference |
 
 ---
 
-## 5. Implementation Details & Logging System
+## 4. Interactive 3D WebGL / Three.js Neural Constellation Engine
 
-### 5.1 Custom Request-Response Lifecycle Logging Middleware
-A core requirement of **Course 24CIE554** is robust server-side auditing. HackElite AI implements an audit logging middleware in `backend/middleware/loggerMiddleware.js`:
+> **File:** `frontend/src/components/Background3D.jsx`  
+> **Library:** Three.js r0.186 (WebGL 2.0)  
+> **Bundle Size:** ~605 KB minified (lazy-chunked by Vite)  
+> **Target:** 60+ FPS on mid-range hardware via GPU-accelerated rendering
 
-```javascript
-const requestLogger = (req, res, next) => {
-  const reqId = ++reqCounter;
-  const startTime = process.hrtime();
-  const timestamp = new Date().toISOString();
-  
-  // Intercept the response completion
-  const originalEnd = res.end;
-  res.end = function (chunk, encoding) {
-    const diff = process.hrtime(startTime);
-    const durationMs = ((diff[0] * 1e9 + diff[1]) / 1e6).toFixed(2);
-    
-    // Structured audit line written to logs/server_audit.log
-    const fileLogEntry = {
-      reqId,
-      timestamp,
-      method: req.method,
-      endpoint: req.originalUrl || req.url,
-      ip: req.ip,
-      user: req.user ? { id: req.user._id, role: req.user.role } : null,
-      query: req.query,
-      body: sanitizeData(req.body),
-      statusCode: res.statusCode,
-      durationMs: parseFloat(durationMs)
-    };
-    fs.appendFile(logFilePath, JSON.stringify(fileLogEntry) + '\n', ...);
-    originalEnd.apply(this, arguments);
-  };
-  next();
-};
+### 4.1 Architecture & Rendering Pipeline
+
+The 3D engine is implemented as a self-contained React functional component that bootstraps a complete Three.js scene inside a single `useEffect`. All physics state lives in `Float32Array` buffers and mutable `useRef` objects — React **never re-renders** during the animation loop, ensuring zero UI jank.
+
+```
+Bootstrap (once on mount)
+  │
+  ├─► WebGLRenderer  (antialias, high-performance GPU hint, DPR ≤ 2)
+  ├─► PerspectiveCamera  (FOV 60°, Z=180)
+  ├─► Fog  (matches bg colour — creates depth illusion)
+  │
+  ├─► PARTICLE SYSTEM
+  │    ├─ BufferGeometry  (4 200 vertices, Float32Array positions)
+  │    ├─ Custom ShaderMaterial  (GLSL vertex + fragment)
+  │    │    ├─ Vertex:   depth-attenuated gl_PointSize, per-particle colour
+  │    │    └─ Fragment: soft radial disc + inner glow core (smoothstep)
+  │    └─ AdditiveBlending  → particles brighten each other where they cluster
+  │
+  ├─► EDGE NETWORK
+  │    ├─ LineSegments  (pre-allocated 8 000-segment Float32Array)
+  │    ├─ DynamicDrawUsage  (GPU buffer hint for frequent updates)
+  │    └─ Rebuilt every 3rd frame with early-exit O(n²) + stride subsampling
+  │
+  └─► SHOCKWAVE MESH
+       ├─ SphereGeometry wireframe  (reused across click events)
+       └─ Scale + opacity animated via MeshBasicMaterial per frame
+
+RAF Loop (tick)
+  ├─ Physics integration  (spring + damping per particle)
+  ├─ Mouse field          (attract / repel depending on cursor speed)
+  ├─ Shockwave impulses   (radial burst for 25 frames post-click)
+  ├─ Lissajous drift      (per-particle breathing oscillation)
+  ├─ Edge rebuild         (every 3rd frame)
+  └─ renderer.render()
 ```
 
-#### Key Capabilities of the Logging Middleware:
-1. **High-Resolution Execution Latency**: Measures processing time via `process.hrtime()` in milliseconds (`ms`).
-2. **Credential & Secret Masking**: Automatically detects and replaces sensitive payload attributes (`password`, `token`, `authorization`) with `***MASKED***`.
-3. **Dual-Destination Output**:
-   * **Terminal Console**: Outputs colored ANSI logs with request IDs, client IP, user context, query params, and HTTP status codes.
-   * **Persistent Disk Storage**: Appends structured JSON Lines to `backend/logs/server_audit.log`.
-4. **Live In-App Audit Inspector**: Accessible directly in the UI via the top navigation bar (`Navbar.jsx` -> `Audit Logs`), invoking `GET /api/logs/view` for viva defense.
+### 4.2 Interactive Physics — Detailed Breakdown
 
-### 5.2 Frontend-to-Backend Service Layer
-All network communication is centralized in `frontend/src/services/api.js`:
-* **Base URL Configuration**: Configured to target `http://localhost:5000/api`.
-* **Automatic Bearer Injection**: Injects `Authorization: Bearer <token>` on every request.
-* **Automatic Session Cleanup**: On HTTP 401 Unauthorized responses, clears `localStorage` and prompts re-authentication.
+#### Mouse Tracking & Fluid Physics
+
+Every `mousemove` event projects the 2D cursor into 3D world-space using a `THREE.Raycaster`. The resulting `Vector3` becomes the centre of a **38-unit influence sphere**. For each particle inside this sphere:
+
+- **Slow cursor** (`speed < 18 px/frame`) → **attraction force** pulls nodes toward the cursor, creating a gravitational lens effect.
+- **Fast cursor** (`speed ≥ 18 px/frame`) → **repulsion force** scatters nodes outward, mimicking a fluid pressure wave.
+
+Additionally, the **constellation rotates** to follow the mouse — a smooth `lerp` interpolation at 3% per frame prevents snapping.
+
+```
+force = (mouseVelocity > FAST_THRESH) ? REPEL_FORCE : ATTRACT_FORCE
+falloff = 1 - (distance / influenceRadius)
+velocity += sign * (direction / distance) * force * falloff
+```
+
+#### Click Shockwaves & Spring Physics
+
+Clicking anywhere on the page:
+1. Casts a ray from the camera through the NDC click coordinates.
+2. Computes the 3D origin in the constellation's **local coordinate space** (by applying the inverse world matrix — shockwave aligns with the rotating mesh).
+3. Pushes a `{origin, age}` object onto a `shockwaves[]` array.
+4. For the next **25 frames**, every particle within `52 world-units` receives an outward radial velocity impulse proportional to `(1 − dist/radius) × SHOCKWAVE_FORCE`.
+5. A semi-transparent wireframe sphere **expands and fades** over 80 frames as a visual echo of the shockwave.
+6. Spring physics (`k = 0.045`, `damping = 0.88`) snaps all displaced particles back to their Lissajous-modulated home positions.
+
+#### Scroll Parallax Camera
+
+```
+targetCamZ = clamp(CAMERA_Z_DEFAULT − scrollY × 0.04, 80, 280)
+camera.position.z = lerp(camera.position.z, targetCamZ, 0.05)
+```
+Scrolling zooms the camera **into** the constellation — the particle field fills the screen as the user descends the landing page, creating a cinematic immersion effect.
+
+#### Idle Breathing (Lissajous Drift)
+
+Each particle has a unique 3-axis Lissajous oscillation applied to its rest position every frame:
+
+```glsl
+home.x = rest.x + sin(t × freqX + phaseX) × DRIFT_AMP
+home.y = rest.y + cos(t × freqY + phaseY) × DRIFT_AMP
+home.z = rest.z + sin(t × freqZ + phaseZ) × DRIFT_AMP × 0.5
+```
+This makes the constellation **breathe and pulsate** even without any user interaction.
+
+### 4.3 Theme Adaptation
+
+| Mode | Background | Node Colours | Edge | Glow |
+|------|-----------|-------------|------|------|
+| **Dark** | `#03050f` void black | Indigo · Cyan · Violet · Emerald · White | `#334155` slate | 100% intensity |
+| **Light** | `#f1f5f9` pearl | Indigo · Cobalt · Purple · Teal · Charcoal | `#94a3b8` muted | 35% intensity |
+
+Theme changes are applied live via the second `useEffect([isDark])` — no scene teardown required. Node colours and glow intensities are recomputed, GPU buffer attributes are marked dirty (`needsUpdate = true`), and the renderer clear colour updates atomically.
+
+### 4.4 Performance Optimisations
+
+| Technique | Detail |
+|-----------|--------|
+| **Single draw call** | All 4 200 particles rendered as one `THREE.Points` object |
+| **Float32Array physics** | Zero heap allocation inside the RAF loop |
+| **DPR cap at 2×** | Avoids 3× pixel density on high-end displays |
+| **Edge stride subsampling** | Alternates between full and half particle checks |
+| **Early-exit distance²** | Avoids `Math.sqrt` for distant pairs |
+| **4-edges-per-particle cap** | Prevents visual clutter + bounds edge count |
+| **Edge rebuilt every 3 frames** | Triples effective edge computation budget |
+| **AdditiveBlending + depthWrite:false** | GPU-side transparency with no Z-sort overhead |
+| **Fog** | Kills far-away overdraw cheaply on the GPU |
+
+### 4.5 z-index Stacking Contract
+
+```
+z-index: 100   →  .navbar  (sticky)
+z-index:   1   →  .app-container  (all UI panels, modals, buttons)
+z-index:   0   →  Background3D canvas  (fixed, full-viewport)
+pointer-events: none on canvas  →  all click/scroll events pass through to UI
+```
 
 ---
 
-## 6. Installation & Setup Instructions
+## 5. Core Feature Modules
 
-Follow these step-by-step instructions to clone, install, configure, and execute HackElite AI on your local environment.
+### 5.1 Authentication & Role-Based Access Control
 
-### 6.1 Prerequisites
-* **Node.js**: `v18.0.0` or higher installed ([Download Node.js](https://nodejs.org/))
-* **npm**: `v9.0.0` or higher (bundled with Node.js)
-* **MongoDB**: Local MongoDB Community Server running on `mongodb://127.0.0.1:27017` or a MongoDB Atlas URI ([Download MongoDB](https://www.mongodb.com/try/download/community))
-* **Git**: Installed and configured ([Download Git](https://git-scm.com/))
+- **JWT-based stateless auth** — tokens signed with `JWT_SECRET`, stored in React state (not localStorage for XSS safety).
+- Two roles: `student` and `admin`.
+- Express middleware `verifyToken` + `requireAdmin` guards every protected route.
+- Frontend gates views with `useAuth()` context hook.
+- Demo accounts seeded via `backend/utils/seedData.js`.
+
+**Auth Routes:**
+```
+POST /api/auth/register   →  Create account (student by default)
+POST /api/auth/login      →  Returns { token, user }
+GET  /api/auth/me         →  Validate & decode current token
+```
+
+### 5.2 Opportunity CRUD & Admin Dashboard
+
+Admins manage the full opportunity lifecycle:
+
+```
+GET    /api/opportunities          →  All listings (paginated, filterable)
+POST   /api/opportunities          →  Create [Admin only]
+PUT    /api/opportunities/:id      →  Update [Admin only]
+DELETE /api/opportunities/:id      →  Delete [Admin only]
+GET    /api/opportunities/:id      →  Single opportunity detail
+```
+
+**Opportunity Schema (MongoDB):**
+```js
+{
+  title, company, type,           // Hackathon | Internship | Competition | Grant
+  domain, location, modality,     // Remote | Hybrid | On-site
+  stipend, deadline, description,
+  skills: [String],
+  externalLink,
+  status: 'active' | 'closed',
+  applicantCount,
+  createdAt, updatedAt
+}
+```
+
+### 5.3 Search, Filtering & Discovery
+
+Multi-attribute filtering applied in one Mongoose query:
+- **Text search** across `title`, `company`, `description`
+- **Domain** chip filter (AI/ML, Web Dev, Cybersecurity, etc.)
+- **Type** dropdown (Hackathon / Internship / Competition / Grant)
+- **Modality** (Remote / Hybrid / On-site)
+- **Deadline** sort (ascending)
+
+### 5.4 Application Tracker
+
+```
+POST   /api/applications           →  Submit application (Student)
+GET    /api/applications/mine      →  All applications for current student
+GET    /api/applications/:oppId    →  Applications for an opportunity [Admin]
+PUT    /api/applications/:id       →  Update status + feedback [Admin]
+DELETE /api/applications/:id       →  Withdraw [Student]
+```
+
+**Status Pipeline:** `Submitted → Under Review → Shortlisted → Selected / Rejected`
+
+Visualised as a 4-column Kanban board in `ApplicationTrackerView.jsx`.
+
+### 5.5 Team Formation & File Upload
+
+```
+GET    /api/teams                  →  All open teams
+POST   /api/teams                  →  Create team with project deck upload
+POST   /api/teams/:id/join         →  Join an existing team
+DELETE /api/teams/:id              →  Disband team [Creator only]
+```
+
+File uploads handled by `multer` — stored in `backend/uploads/`. Project deck PDFs/images attached during team creation.
+
+### 5.6 Analytics Dashboard
+
+```
+GET  /api/analytics/summary        →  Aggregate KPIs
+GET  /api/analytics/domain-dist    →  Opportunities by domain
+GET  /api/analytics/app-trend      →  Application volume over time
+GET  /api/analytics/top-companies  →  Most active organisations
+```
+
+Frontend renders four interactive chart panels using pure CSS + SVG:
+- **KPI cards** (total opportunities, applications, teams, acceptance rate)
+- **Domain distribution** bar chart
+- **Application trend** line graph
+- **Deadline proximity** heat indicator
+
+### 5.7 AI Assistant (Gemini 1.5 Flash)
+
+```
+POST  /api/ai/chat                 →  { message } → { reply }
+```
+
+The backend constructs a **grounded system prompt** by fetching live opportunity and application data from MongoDB, then sends the combined context + user message to `gemini-1.5-flash`. The assistant can answer questions like:
+
+> *"Which AI hackathons have deadlines in the next 30 days that match my Python skills?"*
+
+### 5.8 Audit Log Middleware & Telemetry
+
+Every request is recorded by `backend/middleware/loggerMiddleware.js`:
+
+```js
+{
+  timestamp, method, url, statusCode,
+  responseTimeMs, ip, userAgent,
+  userId, role   // if JWT present
+}
+```
+
+Logs are written to `backend/logs/server_audit.log` (JSON Lines format) and exposed via:
+```
+GET  /api/logs/view   →  Last N log entries [Admin only]
+```
+
+The **Live Audit Log Terminal** in the landing page polls this endpoint and streams entries into the glowing terminal feed UI.
 
 ---
 
-### 6.2 Step 1: Clone the Repository
+## 6. Glassmorphism UI Design System
+
+All UI components use a physics-accurate glassmorphism implementation via CSS custom properties:
+
+```css
+--glass-blur:   24px;                              /* Heavy backdrop-filter */
+--glass-bg:     rgba(18, 24, 38, 0.68);            /* Semi-transparent dark glass */
+--glass-border: rgba(255, 255, 255, 0.12);          /* Micro-border top highlight */
+--glass-shadow: 0 8px 32px rgba(0,0,0,0.35),        /* Ambient elevation */
+                inset 0 1px 0 rgba(255,255,255,0.14); /* Inner top sheen */
+```
+
+**Theme switching** is instant — a `data-theme="light"` attribute on `<html>` overrides all CSS variables simultaneously. User preference is persisted to `localStorage`; OS `prefers-color-scheme` is honoured on first visit.
+
+---
+
+## 7. Project Directory Structure
+
+```
+FSD_PROJ/
+│
+├── backend/
+│   ├── config/
+│   │   └── db.js                    # Mongoose connection
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   ├── opportunityController.js
+│   │   ├── applicationController.js
+│   │   ├── teamController.js
+│   │   ├── analyticsController.js
+│   │   └── aiController.js
+│   ├── middleware/
+│   │   ├── authMiddleware.js        # verifyToken, requireAdmin
+│   │   └── loggerMiddleware.js      # Audit telemetry
+│   ├── models/
+│   │   ├── User.js
+│   │   ├── Opportunity.js
+│   │   ├── Application.js
+│   │   └── Team.js
+│   ├── routes/
+│   │   ├── auth.js
+│   │   ├── opportunities.js
+│   │   ├── applications.js
+│   │   ├── teams.js
+│   │   ├── analytics.js
+│   │   ├── ai.js
+│   │   └── logs.js
+│   ├── utils/
+│   │   └── seedData.js              # Demo data seeder
+│   ├── logs/
+│   │   └── server_audit.log         # Runtime audit log (JSON Lines)
+│   ├── uploads/                     # Multer file destination
+│   ├── .env                         # Environment variables
+│   └── server.js                    # Express entry point
+│
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Background3D.jsx     ← Three.js WebGL Neural Constellation
+│   │   │   ├── Navbar.jsx           ← Theme toggle + navigation
+│   │   │   ├── OpportunityCard.jsx
+│   │   │   ├── OpportunityModal.jsx
+│   │   │   ├── ApplyModal.jsx
+│   │   │   ├── AiAssistantDrawer.jsx
+│   │   │   ├── AuditLogModal.jsx
+│   │   │   ├── AdminOpportunityModal.jsx
+│   │   │   ├── ApplicationReviewModal.jsx
+│   │   │   ├── CreateTeamModal.jsx
+│   │   │   └── JoinTeamModal.jsx
+│   │   ├── context/
+│   │   │   ├── AuthContext.jsx      ← JWT state + role helpers
+│   │   │   ├── ThemeContext.jsx     ← dark/light toggle + localStorage
+│   │   │   └── ToastContext.jsx     ← Global notification system
+│   │   ├── services/
+│   │   │   └── api.js               ← Axios instance + interceptors
+│   │   ├── styles/
+│   │   │   ├── index.css            ← Global design system + glassmorphism
+│   │   │   └── theme.css            ← Light-mode CSS variable overrides
+│   │   ├── views/
+│   │   │   ├── LandingPage.jsx      ← Hero + features + AI simulator + telemetry
+│   │   │   ├── DiscoveryView.jsx
+│   │   │   ├── ApplicationTrackerView.jsx
+│   │   │   ├── TeamFormationView.jsx
+│   │   │   ├── AdminDashboardView.jsx
+│   │   │   └── AnalyticsView.jsx
+│   │   ├── App.jsx                  ← Root layout, modal orchestration
+│   │   └── main.jsx                 ← React root + context providers
+│   ├── index.html
+│   ├── vite.config.js
+│   └── package.json
+│
+└── README.md
+```
+
+---
+
+## 8. Local Installation & Setup Guide
+
+### 8.1 Prerequisites
+
+| Requirement | Version |
+|-------------|---------|
+| Node.js | ≥ 18 LTS |
+| npm | ≥ 9 |
+| MongoDB | ≥ 6 (local) |
+| Git | Any |
+
+### 8.2 Clone & Install
+
 ```bash
-git clone https://github.com/mukundgaur06/FSD_PROJ.git
+# 1. Clone the repository
+git clone <repository-url>
 cd FSD_PROJ
+
+# 2. Install backend dependencies
+cd backend
+npm install
+
+# 3. Install frontend dependencies
+cd ../frontend
+npm install
 ```
 
----
+### 8.3 Environment Configuration
 
-### 6.3 Step 2: Backend Configuration & Dependency Installation
-1. Navigate to the `backend` directory:
-   ```bash
-   cd backend
-   ```
-2. Install all required Node.js dependencies:
-   ```bash
-   npm install
-   ```
-3. Configure the backend environment file. A `.env` file should be located in `backend/.env`. If not present, create it with the following configuration:
-   ```env
-   PORT=5000
-   MONGO_URI=mongodb://127.0.0.1:27017/hackelite_db
-   JWT_SECRET=hackelite_super_secret_jwt_key_2026
-   JWT_EXPIRES_IN=7d
-   NODE_ENV=development
-   ```
+Create `backend/.env`:
 
----
+```env
+# Server
+PORT=5000
+NODE_ENV=development
 
-### 6.4 Step 3: Seed Database with Initial Data
-Run the database seeder to populate sample users (Admin and Students), pre-configured hackathons, internships, coding contests, and sample applications:
+# MongoDB
+MONGODB_URI=mongodb://127.0.0.1:27017/hackelite_db
+
+# JWT
+JWT_SECRET=your_super_secret_key_change_this_in_production
+JWT_EXPIRES_IN=7d
+
+# Google Gemini AI
+GEMINI_API_KEY=your_gemini_api_key_here
+
+# CORS
+CLIENT_URL=http://localhost:5173
+```
+
+### 8.4 Seed Demo Data
+
 ```bash
-npm run seed
-```
-*Expected Console Output:*
-```
-Connected to MongoDB: 127.0.0.1 / hackelite_db
-Cleaning existing collections...
-Seeding default users (Admin & Students)...
-Seeding technical opportunities...
-Creating sample applications...
-Creating sample teams...
-Database seeding completed successfully!
+cd backend
+node utils/seedData.js
 ```
 
----
+This creates:
+- **Admin account:** `admin@hackelite.ai` / `Admin@123`
+- **Student account:** `student@hackelite.ai` / `Student@123`
+- **20+ sample opportunities** across all domains and types
 
-### 6.5 Step 4: Frontend Installation
-1. Open a new terminal window and navigate to the `frontend` directory:
-   ```bash
-   cd ../frontend
-   ```
-2. Install frontend packages:
-   ```bash
-   npm install
-   ```
+### 8.5 Run the Application
 
----
+**Terminal 1 — Backend API:**
+```bash
+cd backend
+npm start
+# ✔ Server running on http://localhost:5000
+# ✔ MongoDB connected: hackelite_db
+```
 
-### 6.6 Step 5: Start the Development Servers
-1. **Start the Backend API Server** (in the `backend` terminal):
-   ```bash
-   npm start
-   ```
-   *The Express API will boot on `http://localhost:5000` with MongoDB connected.*
+**Terminal 2 — Frontend Dev Server:**
+```bash
+cd frontend
+npm run dev
+# ✔ Local: http://localhost:5173
+```
 
-2. **Start the Frontend Client Server** (in the `frontend` terminal):
-   ```bash
-   npm run dev
-   ```
-   *The Vite dev server will launch at `http://localhost:5173`.*
+Open **http://localhost:5173** in your browser.
 
-3. Open your web browser and navigate to:
-   ```
-   http://localhost:5173
-   ```
+### 8.6 Production Build
 
----
-
-### 6.7 Demo Login Credentials for Evaluation & Testing
-
-You can use the 1-Click login buttons on the Sign In modal or manually use the following credentials:
-
-| Account Type | Email Address | Password | Permissions & Role |
-| :--- | :--- | :--- | :--- |
-| **System Administrator** | `admin@hackelite.ai` | `AdminPassword123` | Full CRUD access, candidate evaluation dossier, feedback authoring |
-| **Student (Full Stack)** | `alex@student.edu` | `StudentPassword123` | Opportunity browsing, application tracker, resume upload, team formation |
-| **Student (AI / ML)** | `priya@student.edu` | `StudentPassword123` | AI skill recommendations, team roster exploration |
-| **Student (Cloud / DevOps)** | `marcus@student.edu` | `StudentPassword123` | Application tracking, collaborative team proposals |
+```bash
+cd frontend
+npm run build
+# Outputs to frontend/dist/
+```
 
 ---
 
-## 7. API Endpoint Reference
+## 9. API Reference
 
-| Method | Endpoint | Protection | Description |
-| :--- | :--- | :--- | :--- |
-| `POST` | `/api/auth/register` | Public | Register new student or admin account |
-| `POST` | `/api/auth/login` | Public | Authenticate user & issue signed JWT token |
-| `GET` | `/api/auth/me` | Protected | Retrieve authenticated profile information |
-| `GET` | `/api/opportunities` | Public | Filtered search across opportunities |
-| `GET` | `/api/opportunities/:id` | Public | Retrieve detailed opportunity by ID |
-| `POST` | `/api/opportunities` | Admin Only | Create a new technical opportunity listing |
-| `PUT` | `/api/opportunities/:id` | Admin Only | Update an existing opportunity listing |
-| `DELETE`| `/api/opportunities/:id` | Admin Only | Remove an opportunity listing |
-| `POST` | `/api/opportunities/:id/save` | Student | Toggle bookmark on an opportunity |
-| `GET` | `/api/opportunities/user/saved` | Student | Retrieve user's bookmarked opportunities |
-| `POST` | `/api/applications/:opportunityId` | Student | Submit application with pitch & resume upload |
-| `GET` | `/api/applications/my` | Student | Retrieve user's active application submissions |
-| `DELETE`| `/api/applications/:id` | Student | Withdraw an active application |
-| `GET` | `/api/applications/admin/all` | Admin Only | Retrieve all applicant dossiers for evaluation |
-| `PATCH` | `/api/applications/review/:id` | Admin Only | Update application review stage & feedback notes |
-| `GET` | `/api/teams` | Public | List all collaborative teams |
-| `POST` | `/api/teams` | Student | Create new hackathon team with deck attachment |
-| `POST` | `/api/teams/:id/join` | Student | Submit join request to a team |
-| `PATCH` | `/api/teams/:id/respond` | Student (Leader) | Accept or reject membership requests |
-| `GET` | `/api/analytics/overview` | Public | Retrieve aggregated KPIs, domain breakdown, funnel data |
-| `POST` | `/api/ai/chat` | Public | Query AI assistant for contextual opportunity recommendations |
-| `GET` | `/api/logs/view` | Public | Retrieve recent server request-response audit records |
+### Authentication
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| `POST` | `/api/auth/register` | None | Register new student account |
+| `POST` | `/api/auth/login` | None | Login, returns JWT |
+| `GET` | `/api/auth/me` | Bearer | Validate token, return user |
+
+### Opportunities
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| `GET` | `/api/opportunities` | None | List all (query: `search,domain,type,modality`) |
+| `GET` | `/api/opportunities/:id` | None | Single opportunity |
+| `POST` | `/api/opportunities` | Admin | Create opportunity |
+| `PUT` | `/api/opportunities/:id` | Admin | Update opportunity |
+| `DELETE` | `/api/opportunities/:id` | Admin | Delete opportunity |
+
+### Applications
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| `POST` | `/api/applications` | Student | Submit application |
+| `GET` | `/api/applications/mine` | Student | My applications |
+| `GET` | `/api/applications/:oppId` | Admin | Applications for opportunity |
+| `PUT` | `/api/applications/:id` | Admin | Update status + feedback |
+| `DELETE` | `/api/applications/:id` | Student | Withdraw application |
+
+### Teams
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| `GET` | `/api/teams` | Bearer | All active teams |
+| `POST` | `/api/teams` | Student | Create team (multipart with file) |
+| `POST` | `/api/teams/:id/join` | Student | Join team |
+| `DELETE` | `/api/teams/:id` | Student | Disband team |
+
+### Analytics
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| `GET` | `/api/analytics/summary` | Admin | KPI aggregation |
+| `GET` | `/api/analytics/domain-dist` | Admin | Domain distribution |
+| `GET` | `/api/analytics/app-trend` | Admin | Application timeline |
+
+### AI & Logs
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| `POST` | `/api/ai/chat` | Bearer | Send message to Gemini assistant |
+| `GET` | `/api/logs/view` | Admin | Last 100 audit log entries |
 
 ---
 
-## 8. Code Quality & Standards
+## 10. Key Implementation Highlights (Viva Defense Notes)
 
-* **Static Code Analysis**: Inspected with **SonarLint** and **Oxlint** to eliminate dead code, enforce camelCase conventions, and prevent unsafe object mutations.
-* **Cross-Browser Verification**: Verified across Chromium (Google Chrome, Microsoft Edge, Brave) and Gecko (Mozilla Firefox) engines.
-* **Accessible Semantics**: Semantic HTML5 elements (`<header>`, `<nav>`, `<main>`, `<section>`), appropriate ARIA attributes (`aria-label`), and contrast ratios conforming to WCAG AA guidelines in both light and dark themes.
+### Why MERN?
+MongoDB's flexible document model suits evolving opportunity schemas (skills arrays, nested metadata). React's component model + Vite's HMR delivers fast iteration. Express's middleware chain cleanly separates concerns.
+
+### Why Three.js (not Canvas 2D)?
+Three.js exposes WebGL 2.0's GPU pipeline directly — allowing custom GLSL shaders for per-particle glow effects and `AdditiveBlending` that cannot be replicated in Canvas 2D at this fidelity. The `BufferGeometry` + `Float32Array` approach ensures zero heap allocation in the 60 FPS loop.
+
+### Why custom ShaderMaterial?
+`THREE.PointsMaterial` doesn't support per-particle colour variation or the inner glow `smoothstep` kernel. The custom GLSL vertex+fragment pair adds ~40 lines but unlocks full GPU control over every pixel of every particle.
+
+### Spring Physics Design Decision
+Hooke's Law (`F = kx`) is applied per-frame against each particle's displacement from its Lissajous home target. Velocity damping at 88% per frame creates **critical damping** — particles return to rest without oscillating past the target. This was chosen over stiff RK4 integration because the visual difference is imperceptible at 60 FPS.
+
+### Shockwave Local-Space Alignment
+The shockwave origin is transformed by `points.matrixWorld.invert()` before being stored. This ensures the impulse correctly aligns with the rotating constellation, not the fixed world axes — a subtle but critical correctness detail.
 
 ---
 
-## 9. Academic Declaration & License
+## 11. Audit Log Format
 
-This project was conceived, designed, developed, and tested by the project team for academic fulfillment in course **24CIE554 - Full Stack Development**.
+Every server request produces one JSON line in `backend/logs/server_audit.log`:
 
-Distributed under the **ISC License**. See `LICENSE` for more information.
+```json
+{
+  "timestamp": "2026-10-08T05:14:22.341Z",
+  "method": "POST",
+  "url": "/api/auth/login",
+  "statusCode": 200,
+  "responseTimeMs": 47,
+  "ip": "::1",
+  "userAgent": "Mozilla/5.0 ...",
+  "userId": "66f3a...",
+  "role": "student"
+}
+```
 
-&copy; 2026 **HackElite AI Project Team** — Course 24CIE554: Full Stack Development.
+This log is streamed into the **Live Audit Terminal** on the landing page for live viva demonstration.
+
+---
+
+## 12. License & Academic Integrity
+
+This project is submitted as original coursework for **24CIE554 — Full Stack Development**. All code was written by the project team. External libraries (Three.js, Express, Mongoose, React) are used under their respective open-source licenses (MIT/BSD).
+
+---
+
+*HackElite AI · Course 24CIE554 · Full Stack Development · Built with the MERN Stack + Three.js WebGL 2.0*
