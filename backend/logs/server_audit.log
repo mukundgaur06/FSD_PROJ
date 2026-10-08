@@ -45,3 +45,4 @@
 {"reqId":39,"timestamp":"2026-10-08T04:24:27.978Z","method":"GET","endpoint":"/api/teams?search=","ip":"::1","user":null,"query":{"search":""},"statusCode":304,"durationMs":13.34}
 {"reqId":40,"timestamp":"2026-10-08T04:24:27.986Z","method":"GET","endpoint":"/api/opportunities?type=Hackathon","ip":"::1","user":null,"query":{"type":"Hackathon"},"statusCode":304,"durationMs":11.36}
 {"reqId":41,"timestamp":"2026-10-08T04:24:27.999Z","method":"GET","endpoint":"/api/opportunities?type=Hackathon","ip":"::1","user":null,"query":{"type":"Hackathon"},"statusCode":304,"durationMs":11.2}
+{"reqId":42,"timestamp":"2026-10-08T04:26:00.591Z","method":"GET","endpoint":"/api/logs/view","ip":"::1","user":null,"query":{},"statusCode":200,"durationMs":1.45}
