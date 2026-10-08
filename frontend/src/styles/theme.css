@@ -100,15 +100,19 @@
 [data-theme="light"] .stat-card,
 [data-theme="light"] .chart-card {
   background: var(--bg-card);
-  border-color: var(--border-color);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
 }
 
 [data-theme="light"] .opportunity-card:hover,
-[data-theme="light"] .team-card:hover {
-  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.15), 0 2px 8px rgba(0, 0, 0, 0.06);
+[data-theme="light"] .team-card:hover,
+[data-theme="light"] .application-card:hover,
+[data-theme="light"] .stat-card:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-hover);
 }
 
 [data-theme="light"] .card-title,
@@ -118,9 +122,11 @@
 
 /* Modals */
 [data-theme="light"] .modal-content {
-  background: rgba(255, 255, 255, 0.97);
-  border-color: var(--border-color);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 24px 64px 0 rgba(15, 23, 42, 0.12), 0 8px 24px 0 rgba(15, 23, 42, 0.06), inset 0 1px 0 0 #ffffff;
 }
 
 [data-theme="light"] .modal-close-btn:hover {
@@ -130,9 +136,11 @@
 
 /* AI Drawer */
 [data-theme="light"] .ai-drawer {
-  background: rgba(255, 255, 255, 0.97);
-  border-left-color: var(--border-color);
-  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.90);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-left: 1px solid var(--glass-border);
+  box-shadow: -12px 0 40px 0 rgba(15, 23, 42, 0.08), inset 1px 0 0 0 #ffffff;
 }
 
 [data-theme="light"] .ai-message-bot {
@@ -211,26 +219,36 @@
 
 [data-theme="light"] .hero-glass-card {
   background: rgba(255, 255, 255, 0.82);
-  border: 1px solid rgba(148, 163, 184, 0.35);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(148, 163, 184, 0.2);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 20px 48px 0 rgba(15, 23, 42, 0.1), 0 0 30px rgba(99, 102, 241, 0.12), inset 0 1px 0 0 #ffffff;
 }
 
 [data-theme="light"] .floating-pill-left {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.90);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   color: #059669;
-  border-color: rgba(16, 185, 129, 0.4);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  box-shadow: 0 8px 24px 0 rgba(15, 23, 42, 0.08), inset 0 1px 0 0 #ffffff;
 }
 
 [data-theme="light"] .floating-pill-right {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.90);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   color: #0284c7;
-  border-color: rgba(6, 182, 212, 0.4);
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  box-shadow: 0 8px 24px 0 rgba(15, 23, 42, 0.08), inset 0 1px 0 0 #ffffff;
 }
 
 [data-theme="light"] .stats-banner {
-  background: rgba(255, 255, 255, 0.75);
-  border-color: rgba(148, 163, 184, 0.3);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 
 [data-theme="light"] .stat-number { color: #0f172a; }
@@ -240,42 +258,51 @@
 
 [data-theme="light"] .hero-pill-badge {
   background: rgba(99, 102, 241, 0.08);
-  border-color: rgba(99, 102, 241, 0.3);
+  border: 1px solid rgba(99, 102, 241, 0.3);
   color: #4f46e5;
 }
 
 [data-theme="light"] .feature-card {
-  background: rgba(255, 255, 255, 0.75);
-  border-color: rgba(148, 163, 184, 0.25);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 [data-theme="light"] .feature-card:hover {
-  background: rgba(255, 255, 255, 0.92);
-  border-color: rgba(99, 102, 241, 0.3);
-  box-shadow: 0 15px 40px rgba(99, 102, 241, 0.12);
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-hover);
 }
 [data-theme="light"] .feature-card-title { color: #0f172a; }
 [data-theme="light"] .feature-card-desc  { color: var(--text-muted); }
 
 [data-theme="light"] .step-card {
-  background: rgba(255, 255, 255, 0.75);
-  border-color: rgba(148, 163, 184, 0.25);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 [data-theme="light"] .step-num-badge { color: rgba(15, 23, 42, 0.12); }
 
 [data-theme="light"] .comparison-card.problem {
   background: rgba(254, 242, 242, 0.85);
-  border-color: rgba(244, 63, 94, 0.25);
+  border: 1px solid rgba(244, 63, 94, 0.25);
+  box-shadow: 0 8px 24px 0 rgba(244, 63, 94, 0.06), inset 0 1px 0 0 #ffffff;
 }
 [data-theme="light"] .comparison-card.solution {
   background: rgba(240, 253, 244, 0.85);
-  border-color: rgba(16, 185, 129, 0.3);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  box-shadow: 0 8px 24px 0 rgba(16, 185, 129, 0.06), inset 0 1px 0 0 #ffffff;
 }
 
 [data-theme="light"] .landing-cta-banner {
   background: linear-gradient(135deg, rgba(238, 242, 255, 0.96) 0%, rgba(250, 252, 255, 0.99) 100%);
-  border-color: rgba(99, 102, 241, 0.3);
-  box-shadow: 0 15px 40px rgba(99, 102, 241, 0.1);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  box-shadow: 0 20px 48px 0 rgba(99, 102, 241, 0.12), inset 0 1px 0 0 #ffffff;
 }
 
 [data-theme="light"] .landing-footer { border-top-color: rgba(148, 163, 184, 0.3); }
