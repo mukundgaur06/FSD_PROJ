@@ -358,10 +358,11 @@ const Background3D = () => {
 
       const sc = sceneRef.current;
       const st = stateRef.current;
-      if (!sc.renderer) return;
+      if (!sc.renderer || !st) return;
 
       const { positions: pos, restPos, velocities: vel,
-              driftPhase, driftFreq, shockwaves } = sc;
+              driftPhase, driftFreq } = sc;
+      const { shockwaves } = st;  // shockwaves lives in stateRef, not sceneRef
 
       st.frame++;
       const t = st.frame;
