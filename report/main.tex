@@ -1,0 +1,656 @@
+\documentclass[12pt,a4paper]{report}
+
+% ---------------- Packages ----------------
+\usepackage[a4paper,top=1.55in,bottom=1in,left=1.25in,right=1in,headheight=75pt,headsep=18pt]{geometry}
+\usepackage{setspace}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{ragged2e}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,shapes.geometric}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black}
+
+\onehalfspacing
+\setlength{\parindent}{0.5in}
+\setlength{\parskip}{0pt}
+\justifying
+
+% ---------------- Project Details ----------------
+\newcommand{\ProjectTitle}{HackElite: A Resume-Aware Hackathon Discovery, Recommendation and Team-Collaboration Platform}
+\newcommand{\ProjectShort}{HackElite}
+\newcommand{\CourseCode}{24CIE543 - PROJECT WORK}
+\newcommand{\AcademicYear}{2025-2026}
+\newcommand{\StudentOne}{[NAME 1]}
+\newcommand{\USNOne}{[USN 1]}
+\newcommand{\StudentTwo}{[NAME 2]}
+\newcommand{\USNTwo}{[USN 2]}
+\newcommand{\StudentThree}{[NAME 3]}
+\newcommand{\USNThree}{[USN 3]}
+\newcommand{\GuideOne}{Mr. Subash N}
+\newcommand{\GuideTwo}{Dr. Sajini G}
+\newcommand{\HOD}{Dr. Siddesh G M}
+
+% ---------------- Header/Footer ----------------
+\newcommand{\RamaiahHeaderImage}{%
+  \includegraphics[width=1\textwidth,height=4cm,keepaspectratio]{images/rit_header.png}%
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\RamaiahHeaderImage}
+\fancyfoot[L]{\small \AcademicYear}
+\fancyfoot[C]{\small \ProjectShort}
+\fancyfoot[R]{\small \thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[C]{\RamaiahHeaderImage}
+  \fancyfoot[L]{\small \AcademicYear}
+  \fancyfoot[C]{\small \ProjectShort}
+  \fancyfoot[R]{\small \thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+\titleformat{\chapter}[display]{\normalfont\bfseries\centering\Large}{\chaptername\ \thechapter}{10pt}{\Large}
+\titleformat{\section}{\normalfont\bfseries\large}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection}{1em}{}
+
+\begin{document}
+
+% ---------------- Title Page ----------------
+\begin{titlepage}
+\centering
+\thispagestyle{fancy}
+
+\vspace*{0.4cm}
+{\bfseries\Large A Project Report on\\[0.3cm]}
+{\bfseries\LARGE \ProjectTitle \\[0.6cm]}
+
+{\bfseries for the course\\[0.2cm]}
+{\CourseCode \\[0.8cm]}
+
+{Submitted in partial fulfillment of the requirements for the award of the degree of\\[0.2cm]}
+{\bfseries Bachelor of Engineering\\}
+{in\\}
+{\bfseries Computer Science and Engineering (AI\&ML) and Cyber Security\\[0.8cm]}
+
+{\bfseries By:\\[0.2cm]}
+\StudentOne\ - \USNOne\\
+\StudentTwo\ - \USNTwo\\
+\StudentThree\ - \USNThree\\[0.8cm]
+
+{\bfseries Under the Guidance of:\\[0.2cm]}
+\GuideOne\\
+Assistant Professor\\[1.0cm]
+
+{\bfseries M S RAMAIAH INSTITUTE OF TECHNOLOGY\\}
+{\bfseries BANGALORE-560054\\}
+{\bfseries \AcademicYear}
+
+\end{titlepage}
+
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+% ---------------- Certificate ----------------
+\chapter*{CERTIFICATE}
+\addcontentsline{toc}{chapter}{Certificate}
+
+Certified that the Project Work entitled ``\ProjectTitle'' carried out by \StudentOne\ - \USNOne, \StudentTwo\ - \USNTwo, and \StudentThree\ - \USNThree, bonafide students of M. S. Ramaiah Institute of Technology, Bengaluru, is submitted in partial fulfillment for the award of Bachelor of Engineering in Computer Science and Engineering. The project report has been approved as it satisfies the academic requirements prescribed for the project work.
+
+\vspace{2.2cm}
+
+\begin{tabularx}{\textwidth}{X X}
+\centering Signature of the Guide & \centering\arraybackslash Signature of the HoD\\[0.3cm]
+\centering \GuideOne & \centering\arraybackslash \HOD\\
+\centering Assistant Professor & \centering\arraybackslash Professor \& Head\\
+\end{tabularx}
+
+\clearpage
+
+% ---------------- Declaration ----------------
+\chapter*{DECLARATION}
+\addcontentsline{toc}{chapter}{Declaration}
+
+We hereby declare that the project report titled ``\ProjectTitle'' has been carried out by us at M. S. Ramaiah Institute of Technology, Bengaluru. The work presented in this report is original and has not been submitted in part or full for the award of any degree or diploma.
+
+\vspace{2.5cm}
+
+\begin{tabularx}{\textwidth}{X X X}
+Signature & Signature & Signature\\[0.3cm]
+\StudentOne & \StudentTwo & \StudentThree\\
+\USNOne & \USNTwo & \USNThree\\
+\end{tabularx}
+
+\clearpage
+
+% ---------------- Acknowledgement ----------------
+\chapter*{ACKNOWLEDGEMENT}
+\addcontentsline{toc}{chapter}{Acknowledgement}
+
+We express our sincere gratitude to the management, principal, head of the department, project guides, faculty members, friends, and family for their support and guidance throughout the development of this project.
+
+\vspace{1cm}
+\begin{flushright}
+\StudentOne\ - \USNOne\\
+\StudentTwo\ - \USNTwo\\
+\StudentThree\ - \USNThree
+\end{flushright}
+
+\clearpage
+
+%A
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+Hackathons, case competitions and coding contests are published across many unrelated websites such as Devpost, Unstop, Devfolio, MLH, Kaggle and Codeforces. Students therefore miss deadlines, apply to events for which they are not eligible, and find teammates through separate, unstructured channels. This project presents \textbf{HackElite}, a full-stack web application that aggregates open events from sixteen sources, validates and de-duplicates them, and ranks them for each user.
+
+The system is built on the MERN-style stack: a React~19 single-page client, a Node.js/Express API, and MongoDB (via Mongoose) as the only data store, including the vector embeddings. An hourly ingestion pipeline fetches, validates and merges listings. A deterministic, explainable 0--100 recommendation rubric with eight weighted criteria scores events against a profile that can be inferred from an uploaded resume (PDF/DOCX, parsed in memory). A retrieval-augmented assistant and a per-event agent answer questions with cited sources, and a social layer provides connections, direct messages, teams, private rooms and idea voting over Socket.IO. Calendar integration (Google, Outlook, Apple and a live private \texttt{.ics} feed) and e-mail reminders help users keep track of deadlines.
+
+Security and privacy are treated as first-class requirements: revocable JWT sessions, bcrypt with account lockout, breached-password rejection, NoSQL-injection sanitising, SSRF-safe crawling, and strict per-user data isolation. The project is verified by 114 automated tests against a real MongoDB with real WebSocket clients, plus a 41-check end-to-end journey that runs against a separately started server process, and it is deployable through Docker and a Render blueprint.
+
+\clearpage
+
+\tableofcontents
+\clearpage
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+\clearpage
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+\clearpage
+
+\pagenumbering{arabic}
+\pagenumbering{arabic}
+% ---------------- Chapter 1 ----------------
+\chapter{INTRODUCTION}
+
+\section{General Introduction}
+Hackathons, case competitions, coding contests and similar events have become a primary way for engineering students to build portfolios, win prizes and get noticed by employers. However, these events are published on dozens of independent platforms (Devpost, Unstop, Devfolio, MLH, Kaggle, HackerEarth, Codeforces and others), each with its own format, filters and notification model. A student who wants to know ``what can I realistically enter this month?'' must visit many sites, compare deadlines by hand and read eligibility rules one event at a time.
+
+\textbf{HackElite} is a full-stack web application that addresses this problem end to end. It collects open events from sixteen sources into one MongoDB database, cleans and de-duplicates them, and then personalises the list: every event receives a 0--100 score that is computed from the user's skills, interests, location, education level and preferences, together with a written explanation of why it scored that way. Around this core the platform adds a per-event question-answering agent, calendar and e-mail reminders, and a social layer (connections, direct messages, teams, private rooms and idea voting) so that users can find teammates and prepare together.
+
+The application was developed as a single code base with a React client, a Node.js/Express REST and WebSocket API, and MongoDB as the only persistent store (including the vector embeddings used for semantic matching), which keeps the deployment small and easy to reproduce.
+
+\section{Problem Statement}
+Open hackathons and contests are scattered across many websites. As a result, students (i) miss deadlines, (ii) apply to events for which they are not eligible because of education level or graduation year, (iii) cannot easily tell which events match their skills, and (iv) have to look for teammates through separate chat groups. The same event is often listed on several aggregators with slightly different titles and dates, which adds noise. There is a need for a single, trustworthy platform that aggregates live listings, removes duplicates, recommends events with transparent reasoning, keeps deadlines in the user's own calendar, and supports team formation, while protecting the personal data (such as resumes) that personalisation depends on.
+
+\section{Objectives of the Project}
+\begin{itemize}[leftmargin=*]
+    \item To aggregate open events from multiple public sources into a single normalised, validated and de-duplicated catalogue that refreshes automatically every hour.
+    \item To build a deterministic, explainable recommendation engine that scores each event from 0 to 100 using an eight-criterion rubric and hides events the user cannot legally enter (education level or graduation batch).
+    \item To infer a user profile from a resume (PDF, DOCX or TXT) that is parsed in memory and never stored as a file.
+    \item To provide a question-answering assistant (retrieval-augmented generation) and a per-event agent that answer only from retrieved context and cite their sources.
+    \item To integrate with Google Calendar, Outlook and Apple Calendar, including a live, private calendar feed, and to send opt-in e-mail reminders.
+    \item To provide real-time social features: connections, direct messages, teams with private rooms, notifications and idea voting over WebSockets.
+    \item To implement role-based access (user, lister, admin) and a Free/Pro plan split that is enforced on the server.
+    \item To apply defence-in-depth security and to verify the whole system with automated unit, integration and end-to-end tests.
+\end{itemize}
+
+\section{Project Deliverables}
+\begin{itemize}[leftmargin=*]
+    \item A responsive React single-page application with light and dark themes (Browse, For You, Ask, Assistant, Tracker, Network, Teams, Profile, Plan, Lister and Admin views).
+    \item A Node.js/Express API with 105 route handlers across 13 route modules, a Socket.IO real-time channel, and 16 Mongoose models.
+    \item An ingestion pipeline with 14 source adapter modules covering 16 event sources, with validation, de-duplication and sync-history reporting.
+    \item The recommendation, resume-analysis, RAG and per-event crawling services.
+    \item An automated test suite of 114 tests and a 41-check live end-to-end journey, plus a GitHub Actions CI workflow.
+    \item Deployment artefacts: a multi-stage \texttt{Dockerfile}, \texttt{docker-compose.yml} and a Render blueprint (\texttt{render.yaml}).
+    \item Documentation (architecture, API, security, testing, deployment, crawler policy and social features) and this project report.
+\end{itemize}
+
+\section{Scope of the Project}
+The current scope covers: account registration and login (including optional Google sign-in); listing discovery with search, filters and plain-English queries; resume-based personalisation; explainable recommendations; the application tracker; calendar sync and reminders; the per-event agent; the connection, chat and team system; organiser (``lister'') onboarding with admin approval; and an admin console for sources, users, plans and audit logs. Pro features are unlocked by an activation key rather than by a payment provider. The application targets web browsers on desktops and phones and is designed for a single API instance backed by one MongoDB database.
+
+\section{Future Scope}
+\begin{itemize}[leftmargin=*]
+    \item Replace key-based Pro activation with a payment-provider webhook.
+    \item Move the hourly jobs to a separate worker with a queue, and use MongoDB Atlas Vector Search and a Redis-backed rate limiter and Socket.IO adapter for multi-instance scaling.
+    \item Use model-based skill extraction and Gemini embeddings (already supported, but optional) instead of the dictionary-based extractor and local hashed embeddings.
+    \item Move the session token to an httpOnly cookie with CSRF protection and add CAPTCHA to sign-up.
+    \item Add per-university adapters, push notifications and a formal accessibility (WCAG) audit.
+\end{itemize}
+
+% ---------------- Chapter 2 ----------------
+\chapter{PROJECT REQUIREMENT SPECIFICATIONS}
+
+\section{Software Requirements}
+\begin{table}[H]
+\centering
+\caption{Software Requirements}
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Component} & \textbf{Technology Used} \\
+\hline
+Front end & React 19, React Router 7, Vite 7, plain CSS with theme variables, Socket.IO client \\
+\hline
+Back end & Node.js (version 20 or above), Express 4, Socket.IO 4 \\
+\hline
+Database & MongoDB 7 with Mongoose 8 (documents, indexes, TTL indexes and stored embeddings) \\
+\hline
+Authentication & JSON Web Tokens (HS256), bcryptjs (cost 12), optional Google sign-in via \texttt{google-auth-library} \\
+\hline
+Security middleware & helmet, CORS allowlist, \texttt{express-rate-limit}, custom NoSQL sanitiser \\
+\hline
+Parsing and crawling & cheerio (HTML), \texttt{pdf-parse} and mammoth (resumes), multer (uploads) \\
+\hline
+E-mail & nodemailer (SMTP, optional) \\
+\hline
+AI (optional) & Local hashed embeddings by default; Google Gemini for embeddings and generation when an API key is configured \\
+\hline
+Testing & Node test runner, mongodb-memory-server, socket.io-client, live end-to-end script, optional Playwright journeys \\
+\hline
+DevOps & Docker (multi-stage, non-root), Docker Compose, GitHub Actions CI, Render blueprint, MongoDB Atlas \\
+\hline
+Operating system & Any OS that runs Node.js 20+ (development on Linux, macOS or Windows; production in a Linux container) \\
+\hline
+\end{tabularx}
+\end{table}
+
+\section{Hardware Requirements}
+\begin{table}[H]
+\centering
+\caption{Hardware Requirements}
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Requirement} & \textbf{Minimum Specification} \\
+\hline
+Processor & Dual-core 64-bit CPU, 2 GHz or faster \\
+\hline
+Memory & 4 GB RAM (the API, a local MongoDB and the Vite dev server run together) \\
+\hline
+Storage & 2 GB free disk space for dependencies and the local database \\
+\hline
+Network & Broadband Internet connection for live source ingestion (the application runs offline with stored data) \\
+\hline
+Client device & Any modern browser (Chrome, Edge, Firefox, Safari) on a desktop, tablet or phone; layout verified at a width of 390 px \\
+\hline
+\end{tabularx}
+\end{table}
+
+\section{Functional Requirements}
+\begin{itemize}[leftmargin=*]
+    \item The system shall let a visitor register and sign in with an e-mail and password (or Google), and shall enforce a password policy.
+    \item The system shall ingest, validate and de-duplicate listings from sixteen sources every hour and let admins inspect each source's sync result.
+    \item The system shall let users search, filter, sort and expand listings, and ask questions in plain English such as ``offline hackathons in Pune closing soon with a prize above one lakh''.
+    \item The system shall compute a 0--100 explainable score per event for the signed-in user and hide events the user is not eligible for.
+    \item The system shall let a Pro user upload a resume and shall infer skills, interests and graduation year from it.
+    \item The system shall provide an assistant and a per-event agent that answer from retrieved context with citations.
+    \item The system shall let users track events through the stages saved, applied, shortlisted, won and rejected, and generate calendar links and a private live \texttt{.ics} feed.
+    \item The system shall send in-app, live and e-mail notifications for matches, deadlines, connection requests and invites.
+    \item The system shall let users connect, block, exchange direct messages, create or join teams and private rooms, and vote on team ideas.
+    \item The system shall let organisers register as listers, be approved by an admin, and publish and manage their own events.
+    \item The system shall let admins manage users, roles, plans, listers, listings and view the audit log.
+    \item The system shall let a user delete their account and erase all associated personal data.
+\end{itemize}
+
+\section{Non-Functional Requirements}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Security:} all authorisation is enforced on the server; sessions are revocable; inputs are sanitised; third-party URLs are fetched only through an SSRF-safe client.
+    \item \textbf{Privacy:} one user's resume, picks, tracker and messages are never visible to another; resume files are never stored; personalised responses are marked \texttt{no-store}.
+    \item \textbf{Reliability:} one failing source never blocks the others; ingestion runs never overlap; the API exposes liveness and readiness probes and shuts down gracefully.
+    \item \textbf{Performance:} brute-force cosine search over a few thousand vectors returns in milliseconds; responses are gzip-compressed; heavy endpoints are rate limited.
+    \item \textbf{Usability:} responsive layout with no horizontal scroll on phones, light and dark themes, skeleton, empty and error states, and respect for reduced-motion settings.
+    \item \textbf{Maintainability:} layered code (routes, services, models, utilities), documented APIs, and a CI pipeline that runs tests, the client build, \texttt{npm audit} and a Docker build on every push.
+    \item \textbf{Portability:} the same code runs locally, in Docker, or on a PaaS by changing environment variables only.
+\end{itemize}
+
+% ---------------- Chapter 3 ----------------
+\chapter{DESIGN}
+
+\section{System Architecture}
+HackElite follows a three-tier architecture. The browser hosts a React single-page application that talks to the server over HTTPS REST calls (with a bearer JWT) and over a Socket.IO WebSocket for live chat and notifications. The stateless Express API applies a fixed security pipeline (request id, helmet, CORS allowlist, rate limiting, compression, body-size cap, NoSQL sanitiser) before dispatching to routes, which delegate to services. MongoDB is the only persistent store; no Redis, queue or vector database is required. Two in-process jobs run in the same Node process: the hourly ingestion of the sixteen sources, and the reminder scheduler.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[
+      node distance=0.55cm and 0.9cm,
+      box/.style={draw, rounded corners=2pt, align=center, minimum height=0.9cm, font=\small, fill=blue!6},
+      store/.style={draw, cylinder, shape border rotate=90, aspect=0.25, align=center, font=\small, fill=green!10, minimum height=1.5cm},
+      ext/.style={draw, dashed, rounded corners=2pt, align=center, font=\small, fill=gray!10, minimum height=0.9cm},
+      arr/.style={-{Latex[length=2mm]}, thick}]
+      \node[box, minimum width=4.4cm] (ui) {React 19 SPA\\(Browse, For You, Tracker, Network, Admin)};
+      \node[box, below=of ui, minimum width=4.4cm] (mw) {Security middleware\\helmet $\cdot$ CORS $\cdot$ rate limit $\cdot$ sanitiser};
+      \node[box, below=of mw, minimum width=4.4cm] (api) {Express routes $\rightarrow$ services\\(recommender, RAG, chat, teams)};
+      \node[box, right=1.2cm of api, minimum width=2.6cm] (rt) {Socket.IO\\realtime};
+      \node[box, below=of api, minimum width=4.4cm] (jobs) {Jobs: hourly ingest, reminders};
+      \node[store, left=1.2cm of jobs] (db) {MongoDB\\(incl. vectors)};
+      \node[ext, below=of jobs, minimum width=4.4cm] (src) {16 event sources};
+      \node[ext, right=1.2cm of jobs, minimum width=2.6cm] (opt) {SMTP, Gemini,\\Google (optional)};
+      \draw[arr] (ui) -- node[right, font=\scriptsize]{REST + JWT} (mw);
+      \draw[arr] (mw) -- (api);
+      \draw[arr, <->] (ui.east) -| node[above, pos=0.2, font=\scriptsize]{WebSocket} (rt.north);
+      \draw[arr, <->] (rt) -- (api);
+      \draw[arr] (api) -- (jobs);
+      \draw[arr, <->] (api.west) -| (db.north);
+      \draw[arr, <->] (jobs) -- (db);
+      \draw[arr] (src) -- (jobs);
+      \draw[arr, dashed] (opt) -- (jobs);
+    \end{tikzpicture}
+    \caption{System Architecture Diagram}
+    \label{fig:system_architecture}
+\end{figure}
+
+\subsection{Data Model}
+The application uses 16 Mongoose models. The principal collections are summarised below; indexes enforce uniqueness and make background jobs idempotent.
+
+\begin{table}[H]
+\centering
+\caption{Principal MongoDB Collections}
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Collection} & \textbf{Purpose and key fields} \\
+\hline
+\texttt{users} & E-mail (unique), bcrypt hash (\texttt{select:false}), role (user/lister/admin), plan tier, profile (skills, interests, location, education, preferences), resume analysis, \texttt{tokenVersion}, lockout counters \\
+\hline
+\texttt{listings} & Title, organiser, type, mode, location, deadline, dates, prize, eligibility, tags and skills, \texttt{source} and \texttt{externalId} (unique together), \texttt{alsoOn}, embedding \\
+\hline
+\texttt{sourcesyncs} & One document per source per run: status, counts (raw, valid, rejected, stored), reject reasons, pagination completeness; 90-day TTL \\
+\hline
+\texttt{saveds} & Tracker entry per (user, listing) with status saved $\rightarrow$ applied $\rightarrow$ shortlisted $\rightarrow$ won/rejected and a private note \\
+\hline
+\texttt{notifications} & In-app notifications, unique per (user, listing, type) so repeated runs are idempotent \\
+\hline
+\texttt{connections}, \texttt{invites} & Social graph (one document per user pair) and the shared pipeline for team invites, join requests and room invites \\
+\hline
+\texttt{teams}, \texttt{rooms}, \texttt{messages}, \texttt{ideas} & Teams, chat rooms (dm / team / group), messages (text only, 2000 characters) and idea voting \\
+\hline
+\texttt{listingpages}, \texttt{userqueries}, \texttt{listingquestions} & Cached crawl passages (TTL), private question history (180-day TTL) and anonymous question tallies \\
+\hline
+\texttt{auditlogs}, \texttt{remindlogs} & Audit trail of sensitive actions; reminder de-duplication log \\
+\hline
+\end{tabularx}
+\end{table}
+
+\section{Module Design}
+\subsection{Authentication and Authorisation}
+Registration validates the password policy (at least 10 characters with upper case, lower case, digit and symbol), rejects passwords found in known breaches using the k-anonymity range API (only a five-character SHA-1 prefix leaves the server), and stores a bcrypt (cost 12) hash. Login issues an HS256 JWT carrying the user id and a \texttt{tokenVersion}. Changing a password, signing out everywhere, disabling or re-roling a user increments \texttt{tokenVersion}, which immediately invalidates every outstanding token without a blacklist. Five failed logins lock an account for 15 minutes, and unknown e-mails run a dummy bcrypt comparison so timing does not reveal which accounts exist. Middleware layers \texttt{protect}, \texttt{requireRole}, \texttt{requirePro} and \texttt{requireApprovedLister} are applied on the server for every guarded route.
+
+\subsection{Ingestion Pipeline}
+Source adapters return raw records which pass through four stages: HTTP fetching with timeouts, retry and back-off (including \texttt{Retry-After}), per-host delay and pagination tracking; validation (keep, expired or reject with a reason); cross-source de-duplication by canonical URL or by title plus dates, preferring the native source over an aggregator and recording the others in \texttt{alsoOn}; and upsert by (source, externalId). Stale listings are removed only after a \emph{complete} paginated sync, saved tracker entries are moved when duplicates are merged, and each run writes a \texttt{SourceSync} report shown in the admin Sources dashboard. Adapters run in parallel with \texttt{Promise.allSettled}, so one failure never stops the rest.
+
+\subsection{Recommendation Engine}
+The engine in \texttt{services/recommender.js} is deterministic and inspectable. Hard filters first remove expired, clearly ineligible (education level or graduation batch), already-tracked and duplicate events. The Free tier then scores events with $0.45\times\text{interests}+0.35\times\text{skills}+0.20\times\text{urgency}$. The Pro tier uses the eight-criterion rubric of Table~\ref{tab:rubric}, with multiplicative penalties for in-person events abroad ($\times0.5$), in-person events elsewhere when the user does not travel ($\times0.75$), unverifiable eligibility ($\times0.9$) and paid events for free-only users ($\times0.6$). Every result includes the per-criterion breakdown and reasons, and ordering is stable (score, deadline, id).
+
+\begin{table}[H]
+\centering
+\caption{Pro Recommendation Rubric Weights}
+\label{tab:rubric}
+\begin{tabular}{|l|c|l|c|}
+\hline
+\textbf{Criterion} & \textbf{Weight} & \textbf{Criterion} & \textbf{Weight} \\
+\hline
+Skills match & 0.22 & Preferences & 0.10 \\
+\hline
+Semantic similarity & 0.18 & Timing & 0.08 \\
+\hline
+Location & 0.14 & Eligibility & 0.08 \\
+\hline
+Interests & 0.12 & Prize versus competition & 0.08 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Resume Analysis}
+Uploaded PDF, DOCX or TXT files are checked by extension \emph{and} magic bytes, parsed entirely in memory (never written to disk), and analysed with a word-boundary skill dictionary (so \texttt{java} does not match \texttt{javascript}) to infer skills, interest domains with scores, and graduation year. The resume text and its embedding chunks are \texttt{select:false} and are never serialised to any client.
+
+\subsection{Retrieval-Augmented Assistant and Per-Event Agent}
+Each listing is embedded (384-dimensional local feature-hashing by default, or Gemini embeddings when configured) and stored in MongoDB. For a question, hard constraints (type, mode, closing window, prize, place) are parsed and applied as filters, then candidates are ranked by $0.65\times$ question similarity $+\,0.35\times$ profile similarity, re-ranked with the rubric, and the best resume chunks are added as context. The answer is generated by Gemini when a key is present and is otherwise an extractive answer assembled from the top matches; citations are always returned, and listing text is treated as untrusted data. The per-event agent additionally crawls the event's own site (robots.txt and Crawl-delay honoured, one request per second, at most six same-host pages, user-generated areas never fetched) through an SSRF-safe client and answers only from that event's passages.
+
+\subsection{Network, Teams and Chat}
+Connections, blocking, direct messages, teams, private rooms, invites and idea voting are implemented in the \texttt{social}, \texttt{chat}, \texttt{teams} and \texttt{teamMatch} services. Room membership is the only access rule for chat, with the same 404 returned for ``missing'' and ``not yours''. Socket.IO handshakes require a valid JWT for an active user with the current \texttt{tokenVersion}; the server alone decides room membership, and sockets are dropped when a session is revoked. The Free/Pro split is enforced inside the services (\texttt{social.proOnly}), so no route can bypass it.
+
+\begin{table}[H]
+\centering
+\caption{Free versus Pro Plan}
+\begin{tabularx}{\textwidth}{|X|c|c|}
+\hline
+\textbf{Capability} & \textbf{Free} & \textbf{Pro} \\
+\hline
+Browse, search, filters, plain-English queries, tracker, reminders & Yes & Yes \\
+\hline
+Calendar links, live feed, per-event agent & Yes & Yes \\
+\hline
+Connect, direct messages, join invited teams and rooms & Yes & Yes \\
+\hline
+Resume upload, 8-criterion rubric with explanations & No & Yes \\
+\hline
+RAG assistant with citations & No & Yes \\
+\hline
+Host teams and private rooms, Team-up button & No & Yes \\
+\hline
+Teammate recommendations, people search, public teams, idea voting & No & Yes \\
+\hline
+\end{tabularx}
+\end{table}
+
+\subsection{Calendar and Reminders}
+The calendar service produces RFC~5545 output with UTC times, escaped text, 75-octet line folding that never splits a UTF-8 character, stable UIDs and a \texttt{SEQUENCE} derived from the listing update time so calendars update events in place. Users can add a single event to Google, Outlook or Apple Calendar, or subscribe to a live feed addressed by a 192-bit secret token that can be rotated or revoked and that never contains private notes. The reminder service sends opt-in e-mails at the lead times the user chooses, de-duplicated through a reminder log.
+
+\subsection{Roles, Admin and Operations}
+Organisers sign up as listers and cannot publish until an admin approves them; approved listers publish through a validated template and may edit only their own events. Admins manage users, roles, plans, listers, listings, sources and the audit log, and cannot demote themselves or delete the last admin. Operationally, the API exposes \texttt{/api/health} and \texttt{/api/health/ready}, writes JSON access logs with request ids, and drains connections on SIGTERM.
+
+% ---------------- Chapter 4 ----------------
+\chapter{IMPLEMENTATION AND RESULTS}
+
+\section{Implementation Overview}
+The code base is organised as a root workspace with a \texttt{server} and a \texttt{client} package. The server contains \texttt{routes} (13 modules, 105 handlers), \texttt{services} (recommender, RAG, embeddings, resume parser, calendar, chat, teams, notifier, reminders, crawler and ingestion), \texttt{models} (16 Mongoose schemas), \texttt{middleware} (security, auth, operations) and \texttt{utils} (sanitiser, SSRF-safe fetch, password and breach checks). The client is a Vite-built React application whose components cover the discovery pages, Resume Studio, calendar sync, the event agent, and the chat pane. In total the repository holds roughly 11,000 lines of JavaScript and CSS (excluding dependencies and tests).
+
+Development followed an iterative process driven by tests. Features were first specified in the project documentation, implemented as a service with routes, and verified with in-process tests against a real MongoDB. A live end-to-end journey then exercises the same flows against a separately started server process; this caught a defect that in-process tests could not, where valid PDF resumes returned HTTP 500 because uploads arrived as views into a shared network buffer. Local development uses a single command (\texttt{npm run dev}) that starts a real MongoDB, the API on port 5050 and the web client on port 5173; production uses the Docker image, which serves the API and the built client from one origin, with MongoDB Atlas as the shared database.
+
+\section{Result Snapshots}
+Figure~\ref{fig:home} shows the home page with live statistics, filters and expandable event cards. Figure~\ref{fig:card} shows a card expanded in place with every detail of the event. Figure~\ref{fig:resume} shows the For You page, where a resume is dropped once and picks are ranked with an explainable score. Figure~\ref{fig:agent} shows the per-event agent answering from the organiser's own page with sources. Figure~\ref{fig:tracker} shows the tracker with calendar synchronisation. Figures~\ref{fig:network}, \ref{fig:chat} and \ref{fig:team} show the network, live private chat and team room. Figure~\ref{fig:dark} shows the dark theme and the mobile layout.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{images/home.png}
+    \caption{Home page: live statistics, filters and expandable event cards}
+    \label{fig:home}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{images/card-expanded.png}
+    \caption{Event card expanded in place with all details}
+    \label{fig:card}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{images/for-you-resume-studio.png}
+    \caption{Resume Studio and explainable personalised picks}
+    \label{fig:resume}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{images/listing-agent.png}
+    \caption{Per-event agent: cited answers from the event's own site}
+    \label{fig:agent}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{images/tracker-calendar.png}
+    \caption{Application tracker with live calendar synchronisation}
+    \label{fig:tracker}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{images/network.png}
+    \caption{Network: requests, people and suggestions}
+    \label{fig:network}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{images/chat.png}
+    \caption{Live private chat over WebSockets}
+    \label{fig:chat}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{images/team-room.png}
+    \caption{Team room with invites and idea board}
+    \label{fig:team}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=6.5cm]{images/home-dark.png}\hspace{0.6cm}%
+    \includegraphics[height=6.5cm]{images/mobile-home.png}
+    \caption{Dark theme (left) and mobile layout (right)}
+    \label{fig:dark}
+\end{figure}
+
+\section{Testing}
+Testing is organised in layers. \emph{Unit and integration} tests (\texttt{npm test}) run the real Express application in-process against a real MongoDB and real WebSocket clients. The \emph{in-process journey} walks the whole product story in 11 phases and 41 checks. The \emph{live end-to-end run} (\texttt{npm run e2e}) executes the same journey against a separately started \texttt{node server.js} process with an isolated database. The client build verifies that the React application compiles, and \texttt{npm audit} reports no known vulnerabilities in production dependencies. Each suite creates and drops its own database, so no real data is touched. Table~\ref{tab:suites} lists the suites and Table~\ref{tab:tests} lists representative test cases.
+
+\begin{table}[H]
+\centering
+\caption{Automated Test Suites}
+\label{tab:suites}
+\begin{tabularx}{\textwidth}{|l|c|X|}
+\hline
+\textbf{File} & \textbf{Tests} & \textbf{Area covered} \\
+\hline
+\texttt{e2e.test.js} & 20 & Security headers, auth, injection, privilege escalation, plans, resume, assistant, notifications, lister approval, privacy \\
+\hline
+\texttt{social.test.js} & 13 & Connections, DMs over WebSocket, private rooms, teams, Free/Pro split, erasure cascade \\
+\hline
+\texttt{ingest-pipeline.test.js} & 15 & Dates, prizes, validation, de-duplication, pagination, retries, adapters \\
+\hline
+\texttt{recommender-profiles.test.js} & 10 & Six realistic student profiles, determinism, free tier \\
+\hline
+\texttt{calendar.test.js} & 9 & RFC 5545 output, reminders, links, feed token \\
+\hline
+\texttt{crawler.test.js} & 9 & robots rules, Crawl-delay, PII scrubbing, question privacy \\
+\hline
+\texttt{page-agent.test.js} & 7 & SSRF guard, extraction, caching, prompt injection \\
+\hline
+Other files & 31 & Ingestion helpers, resume PDF/DOCX fixtures, place filter, journey \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Representative Test Cases}
+\label{tab:tests}
+\begin{tabularx}{\textwidth}{|l|X|l|}
+\hline
+\textbf{Test Case} & \textbf{Description} & \textbf{Status} \\
+\hline
+TC-01 & Register with a weak or breached password is rejected; strong password accepted & Pass \\
+\hline
+TC-02 & Five wrong logins lock the account, even for the correct password & Pass \\
+\hline
+TC-03 & NoSQL operators and \texttt{\_\_proto\_\_} keys in body, query and params are stripped & Pass \\
+\hline
+TC-04 & A normal user cannot self-assign the lister or admin role or the Pro plan & Pass \\
+\hline
+TC-05 & Password change invalidates previously issued tokens (\texttt{tokenVersion}) & Pass \\
+\hline
+TC-06 & Fake \texttt{.pdf} without PDF magic bytes is rejected; valid PDF and DOCX resumes are parsed & Pass \\
+\hline
+TC-07 & Two users with different resumes never see each other's picks, tracker or notifications & Pass \\
+\hline
+TC-08 & Pro-only endpoints return HTTP 402 for Free users & Pass \\
+\hline
+TC-09 & Same event on two sources is merged and recorded in \texttt{alsoOn} & Pass \\
+\hline
+TC-10 & Stale listings are removed only after a complete paginated sync & Pass \\
+\hline
+TC-11 & Calendar file folds at 75 octets, escapes text and keeps stable UIDs & Pass \\
+\hline
+TC-12 & Crawler refuses private IPs (incl. IPv4-mapped IPv6) and robots-blocked or forum pages & Pass \\
+\hline
+TC-13 & Instruction text inside a listing or page is not followed by the assistant & Pass \\
+\hline
+TC-14 & WebSocket handshake with an unsigned or revoked token is refused; DM delivered live between connected users & Pass \\
+\hline
+TC-15 & Account deletion erases connections, invites, messages and votes and hands over teams & Pass \\
+\hline
+TC-16 & Full product journey: 11 phases, 41 checks, against a separately started server process & Pass \\
+\hline
+\end{tabularx}
+\end{table}
+
+The project documentation records 114 passing tests in the last full verification run (\texttt{npm run verify}: tests, client build and live end-to-end). The sixteen ingestion adapters were validated against recorded fixtures and a live ingest returned around 940 listings from ten sources in the build environment; the remaining adapters (and the Gemini, SMTP and Google integrations) need real credentials or network access and are documented as not yet verified externally.
+
+% ---------------- Chapter 5 ----------------
+\chapter{CONCLUSION AND FUTURE WORK}
+
+\section{Conclusion}
+HackElite demonstrates that a single, small-footprint MERN-style application can solve a real discovery problem for students: it merges events from sixteen sources into one catalogue, explains why each event is or is not a good fit, keeps deadlines in the user's own calendar, answers questions about individual events with citations, and supports teaming up and private chat. Design choices such as a deterministic rubric instead of a black-box model, MongoDB as the single store for documents and vectors, server-enforced authorisation and in-memory resume parsing keep the system transparent, secure and easy to deploy. The extensive automated testing, including a live end-to-end journey, gives confidence in correctness and privacy. The project also gave the team practical experience with REST and WebSocket API design, schema and index design, secure authentication, web crawling ethics, CI/CD and containerised deployment.
+
+\section{Future Work}
+\begin{itemize}[leftmargin=*]
+    \item Integrate a payment provider for Pro plans and replace key-based activation.
+    \item Scale out: separate worker and queue for ingestion and reminders, MongoDB Atlas Vector Search, Redis-backed rate limiting and Socket.IO adapter.
+    \item Harden sessions with httpOnly SameSite cookies and CSRF tokens, make e-mail verification mandatory for listers and Pro users, and add CAPTCHA.
+    \item Use model-based skill extraction and verified Gemini embeddings and answers; evaluate recommendation quality with user feedback.
+    \item Verify all live adapters regularly, add official partner APIs and per-university adapters, and add push notifications.
+    \item Conduct a formal accessibility (WCAG) audit and add internationalisation.
+\end{itemize}
+
+% ---------------- References ----------------
+\clearpage
+\addcontentsline{toc}{chapter}{References}
+
+\begin{thebibliography}{00}
+
+\bibitem{ref1}
+React Team, ``React Documentation (v19),'' Meta Open Source. \url{https://react.dev}
+
+\bibitem{ref2}
+OpenJS Foundation, ``Express -- Node.js web application framework (v4).'' \url{https://expressjs.com}
+
+\bibitem{ref3}
+MongoDB Inc., ``MongoDB Manual and Atlas Documentation.'' \url{https://www.mongodb.com/docs}
+
+\bibitem{ref4}
+Automattic, ``Socket.IO Documentation (v4).'' \url{https://socket.io/docs/v4}
+
+\bibitem{ref5}
+M. Jones, J. Bradley and N. Sakimura, ``JSON Web Token (JWT),'' RFC 7519, IETF, 2015.
+
+\bibitem{ref6}
+OWASP Foundation, ``OWASP Top Ten and Server-Side Request Forgery Prevention Cheat Sheet.'' \url{https://owasp.org}
+
+\bibitem{ref7}
+B. Desruisseaux (Ed.), ``Internet Calendaring and Scheduling Core Object Specification (iCalendar),'' RFC 5545, IETF, 2009.
+
+\bibitem{ref8}
+P. Lewis et al., ``Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks,'' in \emph{Advances in Neural Information Processing Systems (NeurIPS)}, 2020.
+
+\bibitem{ref9}
+K. Koster et al., ``Robots Exclusion Protocol,'' RFC 9309, IETF, 2022.
+
+\bibitem{ref10}
+N. Provos and D. Mazi\`eres, ``A Future-Adaptable Password Scheme (bcrypt),'' in \emph{Proc. USENIX Annual Technical Conference}, 1999.
+
+\bibitem{ref11}
+Vite Team, ``Vite Documentation.'' \url{https://vite.dev}; Docker Inc., ``Docker Documentation.'' \url{https://docs.docker.com}
+
+\end{thebibliography}
+
+\end{document}
