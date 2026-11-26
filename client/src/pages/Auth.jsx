@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate, useSearchParams, Navigate } from 'react
 import { api } from '../api.js';
 import { useAuth } from '../auth.jsx';
 import { GoogleButton, PasswordMeter, passwordOk } from '../forms.jsx';
-import { Emblem } from '../ui.jsx';
+import { url } from '../landing/assets.js';
 import './auth.css';
 
 const home = (u) => (u.role === 'admin' ? '/admin' : u.role === 'lister' ? '/lister' : '/for-you');
@@ -12,8 +12,8 @@ function Shell({ title, sub, children }) {
   return (
     <div className="au">
       <aside className="au-brand" aria-hidden="true">
-        <Emblem size={260} parallax />
-        <h2>Every opportunity.<br /><span>One feed.</span></h2>
+        <img className="au-photo" src={url('hall.jpg')} alt="" decoding="async" />
+        <h2>Find your<br /><span>stage.</span></h2>
         <ul>
           <li><b>16</b> sources merged and de-duplicated</li>
           <li><b>0–100</b> match scores with plain-English reasons</li>

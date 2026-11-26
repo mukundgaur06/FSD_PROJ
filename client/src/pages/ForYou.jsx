@@ -5,6 +5,7 @@ import { Breakdown, KIND, closes, prizeText, useListingActions } from '../compon
 import ResumeStudio from '../ResumeStudio.jsx';
 import { CountUp, Reveal, Ring } from '../ui.jsx';
 import './foryou.css';
+import PhotoBand from '../PhotoBand.jsx';
 
 // The 3 strongest scoring criteria become inline "skill-match" bars. Pro results carry `criteria`; basic ones a `breakdown` map.
 function topCriteria(rec) {
@@ -81,6 +82,7 @@ function Signal({ data, recs }) {
 function Skeleton() {
   return (
     <div className="fy">
+      <PhotoBand photo="night" focus="46% 30%" />
       <div className="fy-hero"><h1>For you</h1></div>
       <p className="muted" aria-live="polite">Ranking open listings against your profile…</p>
       <div className="fy-tiles">{Array.from({ length: 4 }, (_, k) => <div key={k} className="fy-tile fy-skel" />)}</div>
@@ -107,6 +109,7 @@ export default function ForYou() {
 
   return (
     <div className="fy">
+      <PhotoBand photo="night" focus="46% 30%" />
       <div className="fy-hero">
         <div><p className="fy-kicker">Personalised intelligence</p><h1>For you</h1></div>
         <span className={`fy-tier ${pro ? 'pro' : ''}`}>{pro ? '✦ Personalised ranking' : 'Basic picks'}</span>

@@ -24,7 +24,6 @@ import { useRealtime } from './realtime.jsx';
 import { useAnalytics } from './analytics.js';
 import { API_ORIGIN, api } from './api.js';
 import { useToast } from './toast.jsx';
-import Logo from './Logo.jsx';
 import { useTheme } from './useTheme.js';
 
 // Route guards. The server enforces every one of these again; this is only for a sensible UX.
@@ -62,7 +61,7 @@ function useOnboardingRedirect(user) {
 
 function Theme() {
   const [t, flip] = useTheme();
-  return <button className="btn ghost icon" onClick={flip} aria-label="Toggle theme">{t === 'dark' ? '☀' : '☾'}</button>;
+  return <button className="btn ghost icon theme-toggle" onClick={flip} aria-label="Toggle theme" title={t === 'dark' ? 'Light theme' : 'Dark theme'}><i aria-hidden="true" /></button>;
 }
 
 function VerifyBanner() {
@@ -89,7 +88,7 @@ export default function App() {
     <>
       <a className="skip" href="#main">Skip to content</a>
       <header className="top">
-        <NavLink to="/" className="brand"><Logo /><b>HackElite<span>.ai</span></b></NavLink>
+        <NavLink to="/" className="brand" aria-label="HackElite home"><b>Hack<span>Elite</span></b></NavLink>
         <nav aria-label="Main">
           <NavLink to="/browse" className={link}>Browse</NavLink>
           {user?.role !== 'admin' && user?.role !== 'lister' && <NavLink to="/for-you" className={link}>For you</NavLink>}

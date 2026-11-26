@@ -9,6 +9,7 @@ import '@fontsource-variable/geist/wght.css'; // self-hosted variable grotesk (n
 import './styles.css';
 import './layer.css';
 import './theme.css';
+import './editorial.css'; // last: the app's editorial layer (never applies on the landing route)
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

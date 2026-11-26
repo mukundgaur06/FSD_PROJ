@@ -6,6 +6,7 @@ import { useAuth } from '../auth.jsx';
 import { Details, KIND, closes, prizeText, useListingActions } from '../components.jsx';
 import { CountUp } from '../ui.jsx';
 import './browse.css';
+import PhotoBand from '../PhotoBand.jsx';
 
 const CATS = [
   ['', 'All', '◎'], ['HACKATHON', 'Hackathons', '⌘'], ['CODING', 'Coding', '</>'], ['DESIGN', 'Design', '✎'], ['CASE STUDY', 'Case studies', '▤'],
@@ -129,6 +130,7 @@ export default function Browse() {
 
   return (
     <div className="bw">
+      <PhotoBand photo="tabs" focus="50% 58%" />
       <section className="bw-hero">
         <div>
           <p className="bw-kicker"><span /> Opportunity discovery</p>
