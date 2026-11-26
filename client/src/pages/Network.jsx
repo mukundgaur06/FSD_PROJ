@@ -6,6 +6,7 @@ import { useRealtime } from '../realtime.jsx';
 import { useToast } from '../toast.jsx';
 import { Avatar, CountUp, Ring, hueOf } from '../ui.jsx';
 import './network.css';
+import PhotoBand from '../PhotoBand.jsx';
 
 const initials = (n) => n.split(/\s+/).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
 const GRAD = [['#145BFF', '#22C8FF'], ['#22C8FF', '#C6FF00'], ['#145BFF', '#0B2A78'], ['#C6FF00', '#22C8FF'], ['#0B2A78', '#22C8FF'], ['#145BFF', '#C6FF00']];
@@ -110,12 +111,13 @@ export default function Network() {
 
   const waitingPeople = ov?.incoming || [];
   const stats = useMemo(() => ov && ({ conns: ov.connections.length, waiting: ov.incoming.length + ov.invites.incoming.length, sent: ov.outgoing.length + ov.invites.outgoing.length }), [ov]);
-  if (!ov) return <div className="nw"><h1>Network</h1><div className="nw-skel" /></div>;
+  if (!ov) return <div className="nw"><PhotoBand photo="hall" focus="50% 34%" /><h1>Network</h1><div className="nw-skel" /></div>;
   const invites = ov.invites.incoming;
   const waiting = ov.incoming.length + invites.length;
 
   return (
     <div className="nw">
+      <PhotoBand photo="hall" focus="50% 34%" />
       <section className="nw-hero">
         <div className="nw-hero-copy">
           <p className="nw-kicker">Community and connections</p>

@@ -1,0 +1,233 @@
+/* =====================================================================
+   Editorial layer for the app (every page except the landing route).
+   Brings the landing page's language inside: flat panels with hairlines, light large titles with mono kickers,
+   restrained motion, and lime kept for primary actions and a few key numbers.
+   Everything is scoped to html:not(.ld-route), so the landing page renders exactly as before.
+   Colours come only from the tokens in styles.css (dark and light themes).
+   ===================================================================== */
+
+/* ---- tokens: the neon layer becomes quiet ---- */
+html:not(.ld-route) {
+  --surface: var(--panel);
+  --home-line: var(--line);
+  --glow-blue: 0 0 0 0 transparent;
+  --glow-lime: 0 0 0 0 transparent;
+  --shadow: 0 1px 0 rgb(255 255 255 / .02) inset;
+  --radius: 14px; --r-md: 14px; --r-lg: 18px;
+  --ed-ease: cubic-bezier(.2, .7, .2, 1);
+  --ed-hover: color-mix(in srgb, var(--text) 32%, var(--line));
+  --lime-text: var(--lime);
+}
+html[data-theme='light']:not(.ld-route) { --shadow: 0 1px 2px rgb(10 21 38 / .05); --lime-text: color-mix(in srgb, var(--lime) 68%, var(--lime-ink)); }
+html:not(.ld-route) body { background: var(--bg); }
+html:not(.ld-route) ::selection { background: color-mix(in srgb, var(--cyan) 30%, transparent); }
+
+/* ---- typography ---- */
+html:not(.ld-route) main h1 { font-weight: 400; letter-spacing: -.045em; }
+html:not(.ld-route) main h2, html:not(.ld-route) main h3 { font-weight: 500; letter-spacing: -.02em; }
+html:not(.ld-route) :is(.bw-hero, .fy-hero, .tk-head, .tm-head, .nw-hero-copy, .ak-hero) h1,
+html:not(.ld-route) :is(.tk, .tm, .nw, .fy) > h1,
+html:not(.ld-route) main > div > h1:first-child,
+html:not(.ld-route) .detail > h1 {
+  font-weight: 300; line-height: .92; letter-spacing: -.055em; font-size: clamp(2.6rem, 6vw, 5.4rem); margin: 0 0 .25em;
+}
+html:not(.ld-route) .bw-hero h1 { font-size: clamp(2.8rem, 6.8vw, 6rem); }
+html:not(.ld-route) .detail > h1 { font-size: clamp(2rem, 4.6vw, 3.8rem); line-height: 1; }
+/* kickers: small mono labels, never neon */
+html:not(.ld-route) :is(.bw-kicker, .fy-kicker, .tk-kicker, .tm-kicker, .nw-kicker, .ak-kicker) {
+  display: inline-flex; gap: 10px; margin: 0 0 16px; padding: 0; border: 0; background: none;
+  color: var(--muted); font: 500 .7rem/1.4 var(--mono); letter-spacing: .16em; text-transform: uppercase;
+}
+html:not(.ld-route) .bw-kicker span { display: none; }
+html:not(.ld-route) :is(.bw-sub, .tm-sub, .nw-hero-copy > p:not(.nw-kicker), .ak-hero > p:last-child) { font-size: 1.05rem; line-height: 1.55; }
+html:not(.ld-route) .ak-hero h1 em { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: var(--text); font-weight: 500; }
+
+/* ---- app header: the landing's minimal bar ---- */
+html:not(.ld-route) .top {
+  min-height: 64px; padding-top: 0; padding-bottom: 0; gap: 28px; align-items: center;
+  background: color-mix(in srgb, var(--bg) 88%, transparent); border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  padding-left: max(18px, calc((100vw - 1280px) / 2)); padding-right: max(18px, calc((100vw - 1280px) / 2));
+}
+html:not(.ld-route) .brand { gap: 0; font: 600 1.08rem/1 var(--sans); letter-spacing: -.025em; color: var(--text); background: none; -webkit-text-fill-color: currentColor; }
+html:not(.ld-route) .brand b span { color: var(--lime-text); -webkit-text-fill-color: var(--lime-text); }
+html:not(.ld-route) .top nav { gap: clamp(14px, 1.9vw, 28px); align-items: center; }
+html:not(.ld-route) .top nav a {
+  position: relative; padding: 22px 0; border: 0; border-radius: 0; background: none; box-shadow: none;
+  color: var(--muted); font: 500 .68rem/1 var(--sans); letter-spacing: .15em; text-transform: uppercase; transition: color .25s;
+}
+html:not(.ld-route) .top nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 14px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .45s var(--ed-ease); }
+html:not(.ld-route) .top nav a:hover { color: var(--text); background: none; }
+html:not(.ld-route) .top nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+html:not(.ld-route) .top nav a.active { color: var(--text); background: none; border: 0; box-shadow: none; }
+html:not(.ld-route) .top nav a.active::after { transform: scaleX(1); background: var(--lime); height: 2px; }
+html:not(.ld-route) .top nav a .pill.tiny { margin-left: 6px; padding: 1px 6px; font-size: .56rem; letter-spacing: .08em; }
+html:not(.ld-route) .top .badge.static { min-width: 16px; height: 16px; margin-left: 6px; font: 600 .6rem/16px var(--mono); letter-spacing: 0; }
+html:not(.ld-route) .top-right { gap: 14px; }
+html:not(.ld-route) .top-right .btn { padding: 9px 14px; font: 500 .68rem/1 var(--sans); letter-spacing: .15em; text-transform: uppercase; }
+html:not(.ld-route) .top-right .btn.ghost { border: 0; background: none; color: var(--text); padding-left: 4px; padding-right: 4px; }
+html:not(.ld-route) .top-right .btn.ghost:hover:not(:disabled) { box-shadow: none; color: var(--cyan); }
+html:not(.ld-route) .top-right .btn.primary { padding: 10px 18px; }
+html:not(.ld-route) .top-right .avatar-btn { width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 50%; font: 600 .8rem/1 var(--sans); letter-spacing: 0; }
+html:not(.ld-route) .top-right .bell .btn, html:not(.ld-route) .top-right .bell > button { border: 0; background: none; }
+/* the theme toggle: same half-moon disc as the landing page */
+html:not(.ld-route) .top .theme-toggle { display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; background: none; color: var(--text); }
+html:not(.ld-route) .top .theme-toggle i { width: 13px; height: 13px; border: 1.5px solid currentColor; border-radius: 50%; background: linear-gradient(90deg, currentColor 50%, transparent 50%); transition: transform .6s var(--ed-ease); }
+html:not(.ld-route) .top .theme-toggle:hover i { transform: rotate(180deg); }
+
+/* phones and narrow windows: brand + actions on one row, the nav on one scrollable line beneath */
+@media (max-width: 900px) {
+  html:not(.ld-route) .top { flex-wrap: wrap; row-gap: 0; gap: 0 16px; padding-top: 12px; }
+  html:not(.ld-route) .top-right { width: auto; margin-left: auto; flex-wrap: nowrap; gap: 12px; }
+  html:not(.ld-route) .top nav { order: 3; flex: 0 0 100%; width: 100%; flex-wrap: nowrap; gap: 22px; overflow-x: auto; scrollbar-width: none; margin-top: 4px; }
+  html:not(.ld-route) .top nav::-webkit-scrollbar { display: none; }
+  html:not(.ld-route) .top nav a { flex: none; padding: 14px 0; }
+  html:not(.ld-route) .top nav a::after { bottom: 6px; }
+}
+
+/* ---- footer: the landing's quiet legal row ---- */
+html:not(.ld-route) .foot { margin-top: clamp(40px, 8vh, 80px); padding-top: 22px; padding-bottom: 28px; gap: 10px 24px; font-size: .78rem; border-top: 1px solid var(--line); }
+html:not(.ld-route) .foot a { color: var(--muted); text-decoration: none; transition: color .25s; }
+html:not(.ld-route) .foot a:hover { color: var(--text); }
+html:not(.ld-route) .foot > span:first-child { flex-basis: 100%; }
+
+/* ---- buttons, inputs, chips ---- */
+html:not(.ld-route) .btn { border-color: var(--line); background: transparent; font-weight: 500; }
+html:not(.ld-route) .btn:hover:not(:disabled) { border-color: var(--ed-hover); box-shadow: none; transform: none; }
+html:not(.ld-route) .btn.primary { background: var(--lime); color: var(--lime-ink); border-color: var(--lime); font-weight: 600; box-shadow: none; }
+html:not(.ld-route) .btn.primary:hover:not(:disabled) { background: color-mix(in srgb, var(--lime) 88%, var(--text)); border-color: transparent; box-shadow: none; }
+html:not(.ld-route) input, html:not(.ld-route) select, html:not(.ld-route) textarea { background: color-mix(in srgb, var(--panel) 70%, transparent); border-color: var(--line); }
+html:not(.ld-route) :is(input, select, textarea):focus { border-color: var(--cyan); box-shadow: 0 0 0 3px color-mix(in srgb, var(--cyan) 16%, transparent); }
+html:not(.ld-route) .chip { background: transparent; border-color: var(--line); color: var(--muted); }
+html:not(.ld-route) .chip:hover { border-color: var(--ed-hover); color: var(--text); }
+/* selection = inverse (text on bg), the landing's tab treatment; lime stays for actions */
+html:not(.ld-route) :is(.chip.on, .seg button.on, .nw-tabs button.on, .nw-tabs button[aria-selected='true']) { background: var(--text); color: var(--bg); border-color: var(--text); box-shadow: none; }
+html:not(.ld-route) .pill { background: transparent; border-color: var(--line); }
+
+/* ---- surfaces: flat panels with hairlines, no glow, no lift ---- */
+html:not(.ld-route) :is(.card, .panel, .col, .auth-card, .modal, .facts div, .stats div, .plan, .drop, .tbl-wrap, .kpi, .an-card, .rooms, .convo) { background: var(--panel); border-color: var(--line); box-shadow: none; }
+html:not(.ld-route) .card:hover, html:not(.ld-route) .journey-card:hover { transform: none; box-shadow: none; border-color: var(--ed-hover); }
+html:not(.ld-route) .ring-arc { filter: none; }
+
+/* ---- Browse ---- */
+html:not(.ld-route) .bw-search { border-color: var(--line); background: var(--panel); box-shadow: none; }
+html:not(.ld-route) .bw-search:focus-within { border-color: var(--cyan); box-shadow: none; }
+html:not(.ld-route) .bw-ask { color: var(--text); border-color: var(--line); }
+html:not(.ld-route) .bw-rail { border-color: var(--line); background: transparent; }
+html:not(.ld-route) .bw-rail button { font-weight: 500; }
+html:not(.ld-route) .bw-rail button[aria-pressed='true'] { color: var(--bg); }
+html:not(.ld-route) .bw-thumb { background: var(--text); box-shadow: none; }
+html:not(.ld-route) .bw-soon-wrap h2 { font: 500 .7rem/1.4 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+html:not(.ld-route) .bw-soon { border-color: var(--line); background: var(--panel); border-radius: 14px; }
+html:not(.ld-route) .bw-soon:hover { transform: none; border-color: var(--ed-hover); }
+html:not(.ld-route) .bw-soon small { color: var(--text); font-weight: 500; }
+html:not(.ld-route) .bw-bar { border-top-color: var(--line); }
+html:not(.ld-route) .bw-modes, html:not(.ld-route) .bw-view { border-color: var(--line); background: transparent; }
+html:not(.ld-route) .bw-modes button.on { background: var(--text); color: var(--bg); }
+html:not(.ld-route) .bw-view button.on { color: var(--text); }
+html:not(.ld-route) .bw-card { background: var(--panel); border-color: var(--line); border-radius: 16px; box-shadow: none; }
+html:not(.ld-route) .bw-card::before { display: none; }
+html:not(.ld-route) .bw-card:hover, html:not(.ld-route) .bw-card:focus-within { transform: none; box-shadow: none; border-color: var(--ed-hover); }
+html:not(.ld-route) .bw-type { padding: 0; background: none; color: var(--muted); font-weight: 500; letter-spacing: .14em; }
+html:not(.ld-route) .bw-card h3 { font-weight: 500; font-size: 1.18rem; }
+html:not(.ld-route) .bw-card h3 a:hover { color: var(--cyan); }
+html:not(.ld-route) .bw-prize b { font-weight: 400; color: var(--lime-text); }
+html:not(.ld-route) .bw-save { border-color: var(--line); background: transparent; }
+html:not(.ld-route) .bw-chips span { border-color: var(--line); }
+html:not(.ld-route) .bw-empty { border-color: var(--line); border-radius: 16px; }
+
+/* ---- For you ---- */
+html:not(.ld-route) .fy-tier { border-color: var(--line); color: var(--muted); font: 500 .68rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; padding: 9px 14px; }
+html:not(.ld-route) .fy-tier.pro { color: var(--text); border-color: var(--line); background: none; box-shadow: none; }
+html:not(.ld-route) :is(.fy-tile, .tk-tile, .tm-stats > div, .nw-stats > div) { background: var(--panel); border-color: var(--line); border-radius: 14px; box-shadow: none; }
+html:not(.ld-route) .fy-tile.hero { background: var(--panel); }
+html:not(.ld-route) .fy-tile.hero b { color: var(--muted); }
+/* big numbers: light and large, like the landing's live count; lime only where it means something */
+html:not(.ld-route) :is(.fy-tile strong, .tk-tile b, .tm-stats b, .nw-stats b) { font-weight: 300; letter-spacing: -.05em; color: var(--text); }
+html:not(.ld-route) .tk-tile.win b { color: var(--lime-text); }
+html:not(.ld-route) .tk-tile.next b { color: var(--text); }
+html:not(.ld-route) .tk-tile.next.hot b { color: var(--hot); }
+html:not(.ld-route) .fy-card { background: var(--panel); border-color: var(--line); border-radius: 16px; box-shadow: none; }
+html:not(.ld-route) .fy-card:hover { border-color: var(--ed-hover); box-shadow: none; }
+html:not(.ld-route) .fy-why li { border-color: var(--line); background: none; }
+html:not(.ld-route) .fy-studio { border-color: var(--line); background: var(--panel); box-shadow: none; }
+html:not(.ld-route) .fy-studio summary { color: var(--text); font-weight: 500; }
+
+/* ---- Tracker ---- */
+html:not(.ld-route) .tk-kicker, html:not(.ld-route) .tm-kicker { color: var(--muted); }
+html:not(.ld-route) :is(.tk-col, .tk-card, .tk-lane, .tk-timeline) { box-shadow: none; }
+
+/* ---- Teams ---- */
+html:not(.ld-route) .tm-card { background: var(--panel); border-color: var(--line); border-radius: 16px; box-shadow: none; }
+html:not(.ld-route) .tm-card::before, html:not(.ld-route) .tm-card::after { display: none; }
+html:not(.ld-route) .tm-card:hover { transform: none; box-shadow: none; border-color: var(--ed-hover); }
+html:not(.ld-route) :is(.tm-upsell, .nw-hidden) { border-color: var(--line); background: var(--panel); }
+html:not(.ld-route) .tm-rec { background: var(--panel); border-color: var(--line); }
+
+/* ---- Network ---- */
+html:not(.ld-route) .nw-hero { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+html:not(.ld-route) .nw-visible span { box-shadow: none; animation: none; }
+html:not(.ld-route) .nw-tabs { border-color: var(--line); background: transparent; }
+html:not(.ld-route) .nw-search { border-color: var(--line); background: var(--panel); }
+html:not(.ld-route) .nw-card { background: var(--panel); border-color: var(--line); box-shadow: none; }
+html:not(.ld-route) .nw-cover { background: color-mix(in srgb, var(--panel2) 70%, var(--bg)); opacity: 1; }
+html:not(.ld-route) .nw-skills span { background: none; border: 1px solid var(--line); color: var(--text); font-weight: 500; }
+
+/* ---- Profile ---- */
+html:not(.ld-route) .pf-hero { background: var(--panel); border-color: var(--line); border-radius: 18px; box-shadow: none; }
+html:not(.ld-route) .pf-cover { background: color-mix(in srgb, var(--panel2) 70%, var(--bg)); }
+html:not(.ld-route) .pf-cover::after { display: none; }
+html:not(.ld-route) .pf-id .av { box-shadow: 0 0 0 3px var(--panel); }
+html:not(.ld-route) .pf-plan.pro { color: var(--text); border-color: var(--line); }
+html:not(.ld-route) .pf-strength { background: transparent; border-color: var(--line); }
+html:not(.ld-route) .pf-savebar { border-color: var(--line); background: color-mix(in srgb, var(--bg) 90%, transparent); box-shadow: none; }
+
+/* ---- Profile section nav: selection is inverse, not lime ---- */
+html:not(.ld-route) .pf-nav a.on { background: var(--text); color: var(--bg); }
+html:not(.ld-route) .pf-nav a:hover { background: color-mix(in srgb, var(--text) 6%, transparent); }
+
+/* ---- Ask, assistant, chat ---- */
+html:not(.ld-route) .ak-composer { border-color: var(--line); background: var(--panel); box-shadow: none; }
+html:not(.ld-route) .ak-composer:focus-within { border-color: var(--cyan); box-shadow: none; }
+html:not(.ld-route) .ak-composer .btn { background: var(--lime); color: var(--lime-ink); box-shadow: none; }
+html:not(.ld-route) .aw { border-color: var(--line); border-radius: 18px; background: var(--panel); backdrop-filter: none; box-shadow: none; }
+html:not(.ld-route) .aw-side { border-right-color: var(--line); background: var(--bg); }
+html:not(.ld-route) .aw-hero h1 { font-weight: 300; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -.05em; line-height: 1; }
+html:not(.ld-route) .aw-hero h1 span { color: var(--muted); }
+html:not(.ld-route) .aw-cards button { border-color: var(--line); border-radius: 14px; background: transparent; }
+html:not(.ld-route) .aw-cards button:hover { border-color: var(--ed-hover); transform: none; box-shadow: none; }
+html:not(.ld-route) .aw-ico { background: transparent; border: 1px solid var(--line); color: var(--text); }
+html:not(.ld-route) .aw-bar { border-color: var(--line); background: var(--bg); box-shadow: none; }
+html:not(.ld-route) .aw-bar:focus-within { border-color: var(--cyan); box-shadow: none; }
+html:not(.ld-route) .aw-dock { background: linear-gradient(transparent, var(--panel) 30%); }
+html:not(.ld-route) .aw-pulse { box-shadow: none; }
+html:not(.ld-route) :is(.ak-msg.me, .bubble.user, .msg.mine) { background: var(--panel2); color: var(--text); border-color: var(--line); }
+html:not(.ld-route) .msg.mine .when { color: var(--muted); }
+html:not(.ld-route) .ak-meta b { color: var(--text); }
+
+/* ---- photo mastheads: the landing's photographs open the app's main sections ---- */
+.pb { position: relative; height: clamp(150px, 27vh, 290px); margin: -24px calc(50% - 50vw) clamp(-92px, -9vh, -60px); overflow: hidden; pointer-events: none; }
+.pb img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; animation: pb-in 1.8s var(--ed-ease, ease) both; }
+.pb::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, color-mix(in srgb, var(--bg) 35%, transparent) 0%, color-mix(in srgb, var(--bg) 0%, transparent) 30%, color-mix(in srgb, var(--bg) 55%, transparent) 62%, var(--bg) 100%); }
+.pb + * { position: relative; z-index: 1; }
+@keyframes pb-in { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: none; } }
+
+/* ---- sign in / register: the hall photograph instead of the emblem ---- */
+html:not(.ld-route) .au { border-color: var(--line); border-radius: 18px; background: var(--panel); box-shadow: none; }
+html:not(.ld-route) .au-brand { align-content: end; justify-items: start; padding: clamp(22px, 3vw, 40px); text-align: left; background: var(--bg); }
+html:not(.ld-route) .au-brand::before { display: none; }
+html:not(.ld-route) .au-photo { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 45% 40%; }
+html:not(.ld-route) .au-brand::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg) 0%, color-mix(in srgb, var(--bg) 72%, transparent) 34%, color-mix(in srgb, var(--bg) 0%, transparent) 70%); }
+html:not(.ld-route) .au-brand > :not(.au-photo) { position: relative; z-index: 1; }
+html:not(.ld-route) .au-brand h2 { color: var(--text); font-weight: 300; font-size: clamp(2.4rem, 4.6vw, 4rem); line-height: .9; letter-spacing: -.055em; }
+html:not(.ld-route) .au-brand h2 span { color: var(--lime-text); }
+html:not(.ld-route) .au-brand ul { gap: 6px; margin-top: 18px; }
+html:not(.ld-route) .au-brand li { padding: 0; border: 0; background: none; backdrop-filter: none; color: var(--text); font: 500 .68rem/1.5 var(--mono); letter-spacing: .14em; text-transform: uppercase; animation: none; }
+html:not(.ld-route) .au-brand li b { min-width: 0; margin-right: 10px; color: var(--muted); }
+html:not(.ld-route) .au .auth-card h1 { font-weight: 300; font-size: clamp(2rem, 3.4vw, 2.8rem); letter-spacing: -.05em; }
+@media (max-width: 860px) {
+  html:not(.ld-route) .au-brand { min-height: 220px; }
+  html:not(.ld-route) .au-brand h2 { font-size: 2.2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) { .pb img { animation: none; } }

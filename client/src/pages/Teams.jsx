@@ -5,6 +5,7 @@ import { useAuth } from '../auth.jsx';
 import { useToast } from '../toast.jsx';
 import { Avatar, CountUp, Reveal, Ring, hueOf } from '../ui.jsx';
 import './teams.css';
+import PhotoBand from '../PhotoBand.jsx';
 
 const lc = (s) => String(s).toLowerCase();
 
@@ -93,6 +94,7 @@ export default function Teams() {
 
   return (
     <div className="tm">
+      <PhotoBand photo="team" focus="50% 6%" />
       <header className="tm-head">
         <div>
           <p className="tm-kicker">Collaboration workspace</p>
