@@ -25,6 +25,7 @@ import { useAnalytics } from './analytics.js';
 import { API_ORIGIN, api } from './api.js';
 import { useToast } from './toast.jsx';
 import Logo from './Logo.jsx';
+import { useTheme } from './useTheme.js';
 
 // Route guards. The server enforces every one of these again; this is only for a sensible UX.
 function Guard({ roles, children }) {
@@ -60,12 +61,7 @@ function useOnboardingRedirect(user) {
 }
 
 function Theme() {
-  const [t, setT] = useState(document.documentElement.dataset.theme || 'dark');
-  const flip = () => {
-    const n = t === 'dark' ? 'light' : 'dark';
-    document.documentElement.dataset.theme = n; setT(n);
-    try { localStorage.setItem('theme', n); } catch { /* ignore */ }
-  };
+  const [t, flip] = useTheme();
   return <button className="btn ghost icon" onClick={flip} aria-label="Toggle theme">{t === 'dark' ? '☀' : '☾'}</button>;
 }
 
